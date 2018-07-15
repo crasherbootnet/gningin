@@ -1,0 +1,137 @@
+@extends('layouts.dashboard')
+
+@section('title', 'Context')
+
+@section('context')
+	<div class="content">
+        <div class="container-fluid">
+            <div class="row">
+				<form action="{{ url('projects/context/') }} {{ $short_code }}" method="POST" enctype="multipart/form-data">
+					<textarea rows="12" cols="100" name="content" class="tinymce">
+						@if($content)  {{ $context->content }} @endif
+					</textarea>
+					<div>
+						<div class="row">
+							<div class="col-md-4">
+								<div class="form-group" style="margin-top: 10px">
+									<div class="form-group">
+										<input type="file" id="input03" class="filestyle" name="file">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<?php
+								if($fichier){
+									$type = explode(".", $fichier->name)[1];
+							?>
+								<?php if (in_array($type, array("jpg","jpeg","png"))) {?>
+									<div class="col-md-6" id="img-container">
+										<img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="display: block;" src="<?php echo URL; ?>uploads/contexts/<?php echo $fichier->name; ?>" data-holder-rendered="true"  width="304" height="236">
+									</div>
+									<div class="col-md-6">
+										<h4>Vous avez la possibilité de modifier cette pièce jointe dans le but d'améliorer la compréhension de votre sujet</h4>
+									</div>
+								<?php }else if(in_array($type, array("pdf"))) { ?>
+									<div class="col-md-6" id="img-container">
+										<img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="display: block;" src="<?php echo URL; ?>img/pdf.png" data-holder-rendered="true"  width="304" height="236">
+									</div>
+									<div class="col-md-6">
+										<h4>Vous avez la possibilité de modifier cette pièce jointe dans le but d'améliorer la compréhension de votre sujet</h4>
+									</div>
+								<?php }else if(in_array($type, array("doc","docx"))) { ?>
+									<div class="col-md-6" id="img-container">
+										<img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="display: block;" src="<?php echo URL; ?>img/doc.png" data-holder-rendered="true"  width="304" height="236">
+									</div>
+									<div class="col-md-6">
+										<h4>Vous avez la possibilité de modifier cette pièce jointe dans le but d'améliorer la compréhension de votre sujet</h4>
+									</div>
+								<?php }else if(in_array($type, array("txt"))) { ?>
+									<div class="col-md-6" id="img-container">
+										<img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="display: block;" src="<?php echo URL; ?>img/txt.png" data-holder-rendered="true"  width="304" height="236">
+									</div>
+									<div class="col-md-6">
+										<h4>Vous avez la possibilité de modifier cette pièce jointe dans le but d'améliorer la compréhension de votre sujet</h4>
+									</div>
+								<?php }else if(in_array($type, array("xlsx"))) { ?>
+									<div class="col-md-6" id="img-container">
+										<img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="display: block;" src="<?php echo URL; ?>img/xls.png" data-holder-rendered="true"  width="304" height="236">
+									</div>
+									<div class="col-md-6">
+										<h4>Vous avez la possibilité de modifier cette pièce jointe dans le but d'améliorer la compréhension de votre sujet</h4>
+									</div>
+								<?php }else{ ?>
+									<div class="col-md-6" id="img-container">
+										<img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="display: block;" src="<?php echo URL; ?>img/file.png" data-holder-rendered="true"  width="304" height="236">
+									</div>
+									<div class="col-md-6">
+										<h4>Vous avez la possibilité de modifier cette pièce jointe dans le but d'améliorer la compréhension de votre sujet</h4>
+									</div>
+								<?php } ?>
+
+							<?php }else{  ?>
+								<div class="col-md-6" id="img-container">
+									<img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" style="display: block;" src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22318%22%20height%3D%22180%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20318%20180%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_15fc4144053%20text%20%7B%20fill%3Argba(255%2C255%2C255%2C.75)%3Bfont-weight%3Anormal%3Bfont-family%3AHelvetica%2C%20monospace%3Bfont-size%3A16pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_15fc4144053%22%3E%3Crect%20width%3D%22318%22%20height%3D%22180%22%20fill%3D%22%23777%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22118.0859375%22%20y%3D%2297.2%22%3E318x180%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E" data-holder-rendered="true"  width="304" height="236">
+								</div>
+								<div class="col-md-6">
+									<h4>Vous avez la possibilité de modifier cette pièce jointe dans le but d'améliorer la compréhension de votre sujet</h4>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
+					<div class="row" style="margin: 10px 0px 0px 0px">
+						<a href="<?php echo URL . 'projects/followprojects/'.$short_code; ?>" class="btn btn-annuler">annuler</a>
+						<button type="submit" class="btn btn-loader pull-right" name="add_context">enregistrer</button>
+					</div>
+				</form>
+			</div>
+	    </div>
+	</div>
+	<script type="text/javascript">
+		$('#input03').filestyle({
+			badge: true,
+			input : false,
+			btnClass : 'btn-primary',
+			htmlIcon : '<span class="oi oi-folder"></span> '
+		});
+
+			/*===========================================*/
+			//preview
+			$("#input03").change(function(evt){
+				var files = evt.target.files;
+
+				for(var i=0, f; f=files[i];i++){
+		            if(!f.type.match('image.*')){
+		            	$("#img-container").attr("href","#");
+
+		            	if (f.type.match('text/plain.*')) {
+		            		$("#img-container img").attr("src", "<?php echo URL; ?>img/txt.png")
+		            	}else if(f.type.match('application/pdf.*')){
+		            		$("#img-container img").attr("src", "<?php echo URL; ?>img/pdf.png")
+		            	}else if(f.type.match('application/vnd.openxmlformats-officedocument.wordprocessingml.document.*') || f.type.match("application/msword")){
+		            		$("#img-container img").attr("src", "<?php echo URL; ?>img/doc.png")
+		            	}else if(f.type.match('application/vnd.ms-excel.*') || (f.type.match("vnd.openxmlformats-officedocument.spreadsheetml.sheet"))){
+		            		$("#img-container img").attr("src", "<?php echo URL; ?>img/xls.png")
+		            	}else{
+		            		$("#img-container img").attr("src", "<?php echo URL; ?>img/file.png")
+		            	}
+		            }else{
+
+			            var tip = false;
+			            if(!tip){
+			                var reader = new FileReader();
+			                reader.onload = (function (theFile) {
+			                    return function (e) {
+			                    	$("#img-container img").attr("src", e.target.result);
+			                        $("#img-container").attr("href","#");
+			                        $("#img-container").removeAttr("target");
+			                    };
+			                })(f);
+
+			                reader.readAsDataURL(f);
+			            }
+		            }
+        		}
+			})
+	</script>
+@endsection

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCadreLogiqueTable extends Migration
+class CreateTypeProjetTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateCadreLogiqueTable extends Migration
      */
     public function up()
     {
-        /*Schema::create('cadres_logiques', function (Blueprint $table) {
+        Schema::create('types_projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('project_id');
-            $table->text('content');
+            $table->string('libelle');
             $table->timestamps();
-        });*/
+        });
     }
 
     /**
@@ -28,6 +27,6 @@ class CreateCadreLogiqueTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('cadre_logique');
+        Schema::dropIfExists('types_projects');
     }
 }

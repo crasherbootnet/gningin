@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User;
 
-use DB;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -12,10 +12,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-        							'name' => 'dsdbhsbdh',
-        							'email' => 'fbhsbdhbqs@gmail.com',
-        							'password' => 'bdhqsbdhsq'
-        						]);
+        // creation de l'utilisateur bayeur
+        User::create([
+                        'name' => 'bayeur',
+                        'email' => 'bayeur@gmail.com',
+                        'password' => bcrypt('bayeur'),
+                        'active' => 0,
+                        'is_bayeur' => 1
+                    ]);
+
+        // creation de l'utilisateur ong
+        User::create([
+                        'name' => 'ong',
+                        'email' => 'ong@gmail.com',
+                        'password' => bcrypt('ong'),
+                        'active' => 0,
+                        'is_ong' => 1
+                    ]);
     }
 }

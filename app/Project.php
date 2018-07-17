@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Project extends Model
 {
     protected $table      = 'projects';
-	protected $fillable   = ["id_user","libelle","date_debut","date_fin","short_code"];
+	protected $fillable   = ["bayeur_id","libelle","date_debut","date_fin","short_code"];
 
 	public function context(){
 		return $this->hasOne('App\Context');
@@ -51,5 +51,9 @@ class Project extends Model
 
 	public function execution(){
 		return $this->hasOne('App\Execution');
+	}
+
+	public function bayeur(){
+		return $this->belongsTo('App\Bayeur');
 	}
 }

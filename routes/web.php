@@ -45,3 +45,45 @@ Route::get('projects/cadre-logique/{short_code}', 'CadreLogiqueController@show')
 Route::post('projects/cadre-logique/{short_code}', 'CadreLogiqueController@store')->name('projects.cadre');
 Route::get('projects/execution/{short_code}', 'ExecutionController@show')->name('projects.execution');
 Route::post('projects/execution/{short_code}', 'ExecutionController@store')->name('projects.execution');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin', 'Admin\AdminController@index')->name('admin');
+
+Route::get('/admin/users/changed-statut', 'Admin\UserController@changedStatut');
+
+Route::resource('/admin/users', 'Admin\UserController');
+
+
+Route::prefix('bayeurs')->group(function () {
+	Route::group(['middleware' => ['authBayeur']], function(){
+		Route::get('/', 'BayeurController@index');
+		Route::prefix('ong')->group(function() {
+			Route::get('/', 'OngController@index');
+			Route::get('/create', 'OngController@create');
+			Route::post('/strore', 'OngController@store')->name('postCreateOng');
+			Route::get('/changed-statut', 'OngController@changedStatut')->name('changedStatutOng');
+		});
+		Route::prefix('projects')->group(function() {
+			Route::get('/', 'Bayeur\ProjectController@index');
+			Route::get('/create', 'Bayeur\ProjectController@create');
+			Route::post('/store', 'Bayeur\ProjectController@store');
+		});
+	});
+
+	Route::get('/login', 'AuthBayeur\LoginBayeurController@showLoginForm')->name('getBayeurLogin');
+	Route::post('/login', 'AuthBayeur\LoginBayeurController@login')->name('postBayeurLogin');
+});
+
+Route::prefix('ongs')->group(function() {
+	Route::group(['middleware' => ['authOng']], function(){
+
+	});
+
+	Route::get('/login', 'Ong\AuthOng\LoginOngController@showLoginForm')->name('getOngLogin');
+	Route::post('/login', 'AuthBayeur\LoginBayeurController@login')->name('postOngLogin');
+});

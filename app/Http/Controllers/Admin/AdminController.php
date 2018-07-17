@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-use App\Project;
-
-class ProjectController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +13,8 @@ class ProjectController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
-        // recuperation de tous les projects du systeme
-        $projects = Project::all();
-        
-        return view('projects.index', ['projects' => $projects]);
+    {
+        return view('admin.index');
     }
 
     /**
@@ -28,7 +24,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.add');
+        //
     }
 
     /**
@@ -39,20 +35,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $data = [
-                        //'id_user' => 0,
-                        'libelle' => $request->libelle,
-                        'date_debut' => $request->date_debut,
-                        'date_fin' => $request->date_debut,
-                        'short_code' => strtolower(substr($request->libelle,0,strlen($request->libelle)/2))
-                    ];
-            Project::create($data);   
-        } catch (Exception $e) {
-            dd("une erreur est survenue");
-        }
-
-        return redirect('projects');
+        //
     }
 
     /**
@@ -61,12 +44,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($short_code)
+    public function show($id)
     {
-        // recuperation des informations du project
-        $project = Project::where('short_code', $short_code)->first();
-
-        return view('projects.dashboard', ['project' => $project ]);
+        //
     }
 
     /**

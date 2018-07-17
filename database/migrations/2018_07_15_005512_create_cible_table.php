@@ -28,6 +28,6 @@ class CreateCibleTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cible');
+        Schema::dropIfExists('cibles');
     }
 }

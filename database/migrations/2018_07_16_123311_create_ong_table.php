@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCadreLogiqueTable extends Migration
+class CreateOngTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,17 @@ class CreateCadreLogiqueTable extends Migration
      */
     public function up()
     {
-        /*Schema::create('cadres_logiques', function (Blueprint $table) {
+        Schema::create('ongs', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('project_id');
-            $table->text('content');
+            $table->integer('user_id');
+            $table->integer('bayeur_id');
+            /*$table->foreign('user_id')
+                  ->references('id')
+                  ->on('users');
+                  //->onDelete('cascade');*/
+
             $table->timestamps();
-        });*/
+        });
     }
 
     /**
@@ -28,6 +33,6 @@ class CreateCadreLogiqueTable extends Migration
      */
     public function down()
     {
-        //Schema::dropIfExists('cadre_logique');
+        Schema::dropIfExists('ongs');
     }
 }

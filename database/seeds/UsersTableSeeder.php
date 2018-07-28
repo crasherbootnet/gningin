@@ -17,7 +17,7 @@ class UsersTableSeeder extends Seeder
                         'name' => 'bayeur',
                         'email' => 'bayeur@gmail.com',
                         'password' => bcrypt('bayeur'),
-                        'active' => 0,
+                        'active' => 1,
                         'is_bayeur' => 1
                     ]);
 
@@ -26,7 +26,7 @@ class UsersTableSeeder extends Seeder
                         'name' => 'ong',
                         'email' => 'ong@gmail.com',
                         'password' => bcrypt('ong'),
-                        'active' => 0,
+                        'active' => 1,
                         'is_ong' => 1
                     ]);
     }

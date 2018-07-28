@@ -16,6 +16,7 @@ class CreateHypothesesTable extends Migration
         Schema::create('hypotheses', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id');
+            $table->string('project_historisation_id')->nullable();
             $table->text('content');
             $table->timestamps();
         });

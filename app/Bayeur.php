@@ -13,9 +13,9 @@ class Bayeur extends Model
     	return $this->hasMany('App\Ong');
     }
 
-    public function projects(){
+    /*public function projects(){
     	return $this->hasMany('App\Project');
-    }
+    }*/
 
     public function user(){
     	return $this->belongsTo('App\User');

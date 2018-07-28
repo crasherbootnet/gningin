@@ -16,6 +16,7 @@ class CreateResultatsTable extends Migration
         Schema::create('resultats', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id');
+            $table->string('project_historisation_id')->nullable();
             $table->string('libelle');
             $table->text('content');
             $table->timestamps();

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use App\Project;
+use App\Categorie;
+use App\ProjectCategorie;
+use App\ProjectHistorisation;
 
 class ProjectController extends Controller
 {
@@ -28,7 +32,10 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.add');
+        // recuperation de toutes les categories
+        $categories = Categorie::all();
+
+        return view('projects.add', ['categories' => $categories ]);
     }
 
     /**
@@ -39,17 +46,33 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->categories);
         try {
-            $data = [
-                        //'id_user' => 0,
+            // recuperation de l'utilisateur
+            $user = Auth::user();
+
+            // creation d'un projet
+            $data = [   
+                        'ong_id' => $user->ong->id,
                         'libelle' => $request->libelle,
                         'date_debut' => $request->date_debut,
                         'date_fin' => $request->date_debut,
+                        'type_project_id' => $request->type_projet,
                         'short_code' => strtolower(substr($request->libelle,0,strlen($request->libelle)/2))
                     ];
-            Project::create($data);   
+            $project = Project::create($data);
+
+            $categories = json_decode($request->categories); 
+
+            // creation de categorie project
+            foreach ($categories as $categorie_id) {
+                ProjectCategorie::create([
+                                            'categorie_id' => $categorie_id,
+                                            'project_id' => $project->id
+                                        ]);
+            }
         } catch (Exception $e) {
-            dd("une erreur est survenue");
+            // trait error
         }
 
         return redirect('projects');
@@ -101,5 +124,50 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function saveHistorisation(Request $request, $short_code)
+    {
+        try {
+            // recuperation des informations du project
+            $project = Project::where('short_code', $short_code)->first(); 
+
+            // on vérifie si nous avons une modification 
+            if(!$project->isModification())
+            {
+                return 2;
+            }
+
+            // historisation du project
+            ProjectHistorisation::create([
+                                            'id' => uniqid(), 
+                                            'project_id' => $project->id,
+                                            'libelle' =>$request->name,
+                                            "date_envoi" => date("Y-m-d H:i:s")
+                                        ]);
+            return 1;
+        } catch (Exception $e) {
+            
+        }
+
+        return 0;
+    }
+
+    /*
+        @param string $short_code
+        @return true si nous avons une modification
+    */
+    public function isModification($short_code)
+    {
+        // recuperation des informations du project
+        $project = Project::where('short_code', $short_code)->first(); 
+
+        // on vérifie si nous avons une modification 
+        if(!$project->isModification())
+        {
+            return 0;
+        }
+
+        return 1;
     }
 }

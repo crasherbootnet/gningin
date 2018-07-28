@@ -95,7 +95,7 @@
 
     <!-- TINYMCE -->
     <script type="text/javascript" src="{{ asset('plugin/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugin/tinymce/init-tinymce.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ asset('plugin/tinymce/init-tinymce.js') }}"></script>-->
 
     <!-- FILESTYLE -->
     <script type="text/javascript" src="{{ asset('plugin/filestyle/bootstrap-filestyle.min.js') }}"></script>
@@ -189,6 +189,11 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
+                           <a href="{{ url('bayeurs/projects/historisations/'.$project->short_code) }}">
+                               Dernieres modifications ({{ $project->projectHistorisation()->created_at }})
+                            </a>
+                        </li>
+                        <li>
                            <a href="#">
                                Account
                             </a>
@@ -257,6 +262,30 @@
       ga('create', 'UA-46172202-1', 'auto');
       ga('send', 'pageview');
 
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            //init tinyMCE
+
+            tinymce.init({
+                selector:"textarea.tinymce",
+              height: 500,
+              theme: 'modern',
+              readonly: 1,
+              plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools'
+              ],
+              toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+              toolbar2: 'print preview media | forecolor backcolor emoticons',
+              image_advtab: true,
+                statubar:true
+            });
+
+        })
     </script>
 </html>
 

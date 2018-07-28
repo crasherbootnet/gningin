@@ -56,9 +56,6 @@
 			<ul id="progressbar">
 				<li class="active">Creation d'une activité</li>
 				<li>Description de l'activité</li>
-				<li>Rapport moral</li>
-				<li>Rapport financier</li>
-				<li>Liste de presence</li>
 			</ul>
 			<fieldset>
 				<h2 class="fs-title">Creation d'une activité</h2>
@@ -81,11 +78,16 @@
 						<input type="date" name="date_fin" class="form-control" required>
 					</div>
 				</div>
+				<!--<a href="{{ url('projects/activites/'.$project->short_code) }}" class="btn btn-annuler">Annuler</a>
+				<input type="button" name="previous" class="previous action-button" value="Previous" />
+				<input type="button" name="next" class="next action-button" value="Next" />-->
+
+				<input type="text" name="personnes" hidden>
 				<a href="{{ url('projects/activites/'.$project->short_code) }}" class="btn btn-annuler">Annuler</a>
 				<input type="button" name="previous" class="previous action-button" value="Previous" />
-				<input type="button" name="next" class="next action-button" value="Next" />
+				<button type="submit" class="btn btn-loader" name="add_activite">Terminer</button>
 			</fieldset>
-			<fieldset>
+			<!--<fieldset>
 				<h2 class="fs-title">Rapport moral</h2>
 				<h3 class="fs-subtitle">Décription du rapport moral</h3>
 				<textarea cols="20" rows="18" name="rapport_moral"></textarea>
@@ -100,11 +102,10 @@
 				<a href="{{ url('projects/activites/'.$project->short_code) }}" class="btn btn-annuler">Annuler</a>
 				<input type="button" name="previous" class="previous action-button" value="Previous" />
 				<input type="button" name="next" class="next action-button" value="Next" />
-			</fieldset>
+			</fieldset>-->
 			<!-- fieldsets -->
-			<fieldset>
+			<!--<fieldset>
 				<h2 class="fs-title">Liste de présence</h2>
-				<!--<h3 class="fs-subtitle">Insérer le nom des personnes présentes lors de l'activité</h3>-->
 				<div class="row" style="margin-bottom: 10px;">
 					<a href="" class="added pull-right" id="ajouter" data-toggle="modal" data-target="#modalAddPersonne" style="margin-right: 24px;"><span><i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i></span></a>
 				</div>
@@ -131,7 +132,7 @@
 				<a href="{{ url('projects/activites/'.$project->short_code) }}" class="btn btn-annuler">Annuler</a>
 				<input type="button" name="previous" class="previous action-button" value="Previous" />
 				<button type="submit" class="btn btn-loader" name="add_activite">Terminer</button>
-			</fieldset>
+			</fieldset>-->
 			
 		</form>
 			</div>

@@ -205,7 +205,7 @@
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something</a></li>
                                 <li class="divider"></li>
-                                <li><a href="#">Separated link</a></li>
+                                <li><a href="javascript:void(0)" id="completeSave">Enregistrement</a></li>
                               </ul>
                         </li>
                         <li>
@@ -314,6 +314,26 @@
       </div>
   </div>
 
+  <div class="modal fade" tabindex="-1" role="dialog" id="modalCompleteSave">
+      <div class="modal-dialog" role="document">
+        <input type="text" name="_token" value="{{ csrf_token() }}" hidden>
+        <div class="modal-content">
+          <div c0lass="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Saisir le nom de la modification ?</h4>
+      </div>
+          <div class="modal-body">
+            <input type="text" class="form-control" name="name_modification">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Annulez</button>
+            <button type="button" class="btn btn-primary" id="save-modification" data-id>Enregister</button>
+            <button type="button" class="btn btn-primary btn_delete_obstacle" data-id="0">Enregistrer et Soumettre</button>
+          </div>
+        </div>
+      </div>
+  </div>
+
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -323,6 +343,48 @@
       ga('create', 'UA-46172202-1', 'auto');
       ga('send', 'pageview');
 
+    </script>
+
+    <script>
+      $(document).ready(function() {
+        $("#completeSave").click(function(){
+
+          // on vérifie si nous avons une modification 
+          $.ajax({
+            url: "{{ url('projects/is-modification/'.$project->short_code) }}",
+            type: "get",
+            success: function(data){
+              if(data == 1)
+              {
+                $("#modalCompleteSave").modal();
+              }else{
+                alert("Désolé il y'a aucune modification, veillez apporter une modification avant d'enregistrer une modification");
+              }
+            }
+          });
+
+
+        });
+
+        // save modification 
+        $("#save-modification").click(function (){
+          $.ajax({
+            url: "{{ url('projects/save-modification/'.$project->short_code)}}",
+            type: 'POST',
+            data: {'_token' : $("input[name='_token']").val(), 'name' : $("input[name='name_modification']").val()},
+            success: function(data){
+              if(data == 1){
+                alert("l'enregistrement s'est passe avec success ");
+              }else if(data == 2){
+                alert("Désolé il y'a aucune modification, veillez modifier avant d'enregistrer une modification");
+              }
+            }
+          })
+
+          // close modal
+          $("#modalCompleteSave").modal('toggle');
+        })
+      });
     </script>
 </html>
 

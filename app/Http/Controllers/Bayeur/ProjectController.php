@@ -65,4 +65,22 @@ class ProjectController extends Controller
         	]);
         }
     }
+
+    /*
+        @param string $short_code => Short code du project
+        @return view : Permet de retourner le dashboard du project
+    */
+    public function show($short_code)
+    {
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+
+        // on vérifie si le project a une historisation
+        if(count($project->projectsHistorisations) == 0)
+        {
+            return view('bayeurs.nothing');
+        }
+
+        return view('bayeurs.projects.show', ['project' => $project]);
+    }
 }

@@ -29,12 +29,16 @@ class User extends Authenticatable
 
 
     public function bayeur(){
-        return $this->hasOne('App\bayeur');
+        return $this->hasOne('App\Bayeur');
+    }
+
+    public function ong(){
+        return $this->hasOne('App\Ong');
     }
 
     public function getRedirectPath(){
         $redirectTo = "";
-
+        
         if($this->is_bayeur == 1){
             $redirectTo = "/bayeurs";
         }else if($this->is_ong == 1){

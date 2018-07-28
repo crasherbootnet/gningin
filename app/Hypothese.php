@@ -7,4 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Hypothese extends Model
 {
     public $table = "hypotheses";
+    public $fillable = ["project_id", "content"];
 }

@@ -14,4 +14,8 @@ class Activite extends Model
     public function personnes(){
     	return $this->hasMany('App\ActivitePersonne');
     }
+
+    public function project(){
+    	return $this->belongsTo('App\Project');
+    }
 }

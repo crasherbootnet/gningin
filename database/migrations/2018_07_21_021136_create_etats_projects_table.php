@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHypotehsesTable extends Migration
+class CreateEtatsProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateHypotehsesTable extends Migration
      */
     public function up()
     {
-        Schema::create('hypotehses', function (Blueprint $table) {
+        Schema::create('etats_projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('project_id');
-            $table->text('content');
+            $table->string('libelle');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateHypotehsesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hypotehses');
+        Schema::dropIfExists('etats_projects');
     }
 }

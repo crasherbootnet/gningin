@@ -14,7 +14,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
         				UsersTableSeeder::class,
         				BayeurTableSeeder::class,
-        				OngTableSeeder::class
+        				OngTableSeeder::class,
+                        ProjectTableSeeder::class,
+                        CategorieTaleSeeder::class,
+                        EtatProjectTableSeeder::class,
         ]);
     }
 }

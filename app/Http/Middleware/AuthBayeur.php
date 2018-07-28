@@ -16,7 +16,7 @@ class AuthBayeur
 
     public function handle($request, Closure $next, ...$guards)
     {
-        if(!$this->auth->user()){
+        if(!$this->isBayeur()){
             return redirect('/bayeurs/login');
         }
 
@@ -39,4 +39,14 @@ class AuthBayeur
 
         throw new AuthenticationException('Unauthenticated.', $guards);
     }*/
+
+    // @return True if user is bayeur
+    public function isbayeur()
+    {
+        $user = $this->auth->user();
+        if($user && $user->is_bayeur == 1){
+            return true;
+        }
+        return false;
+    }
 }

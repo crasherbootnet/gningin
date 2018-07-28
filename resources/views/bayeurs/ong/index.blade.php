@@ -53,6 +53,7 @@
 								</td>
 								<td class="actions">
 									<a href="{{ url('/admin/ongs/show/'.$ong->id) }}" class='edit'><span><i class='fa fa-eye fa-lg' aria-hidden='true'></i></span></a>
+									<a href="{{ url('/bayeurs/ong/projects/'.$ong->id) }}" class='edit'><span><i class='fa fa-eye fa-lg' aria-hidden='true'></i></span></a>
 									<a href="{{ url('/admin/ongs/delete/'.$ong->id) }}" class='deleted'><span><i class='fa fa-trash-o  fa-lg' aria-hidden='true'></i></span></a>
 								</td>
 							</tr>

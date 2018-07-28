@@ -28,6 +28,18 @@ class OngController extends Controller
     	return view('bayeurs.ong.create');
     }
 
+    // @return view : Return the view list projects in for the bayeurs 
+    public function getListProjects($ong_id){
+        
+        // recuperation de l'ong 
+        $ong = Ong::where('id', $ong_id)->first();
+
+        // recuperation de tous les projects de l'ong 
+        $projects = $ong->projects();
+
+        return view('bayeurs.ong.projects.index', ['projects' => $projects]);
+    }
+
     public function store(Request $request){
 
     	try {

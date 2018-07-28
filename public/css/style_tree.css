@@ -1,0 +1,46 @@
+.sidebar-nav .has-arrow {
+
+    position: relative;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+    padding: 8px 35px 8px 15px;
+    display: block;
+    font-size: 15px;
+    border-radius: 4px;
+    white-space: nowrap;
+
+}
+.waves-effect {
+
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity, transform;
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+
+}
+.sidebar-nav ul li {
+
+    list-style: none;
+
+}

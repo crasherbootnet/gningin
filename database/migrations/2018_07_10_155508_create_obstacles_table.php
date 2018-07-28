@@ -16,6 +16,7 @@ class CreateObstaclesTable extends Migration
         Schema::create('obstacles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id');
+            $table->string('project_historisation_id')->nullable();
             $table->string('libelle');
             $table->string('short_code');
             $table->text('content');

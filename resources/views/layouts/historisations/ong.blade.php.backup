@@ -1,0 +1,1346 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>Ong-base - @yield('title')</title>
+
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta name="viewport" content="width=device-width" />
+
+     <!-- Canonical SEO  -->
+    <link rel="canonical" href="https://www.creative-tim.com/product/light-bootstrap-dashboard"/>
+
+    <!--  Social tags      -->
+    <meta name="keywords" content="creative tim, html dashboard, html css dashboard, web dashboard, freebie, free bootstrap dashboard, bootstrap, css3 dashboard, bootstrap admin, light bootstrap dashboard, frontend, responsive bootstrap dashboard">
+
+    <meta name="description" content="An admin dashboard template designed to be simple and beautiful.">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Light Bootstrap Dashboard by Creative Tim">
+    <meta itemprop="description" content="An admin dashboard template designed to be simple and beautiful.">
+
+    <meta itemprop="image" content="../../s3.amazonaws.com/creativetim_bucket/products/32/original/opt_lbd_thumbnail.jpg">
+    <!-- Twitter Card data -->
+
+    <meta name="twitter:card" content="product">
+    <meta name="twitter:site" content="@creativetim">
+    <meta name="twitter:title" content="Light Bootstrap Dashboard by Creative Tim">
+
+    <meta name="twitter:description" content="An admin dashboard template designed to be simple and beautiful.">
+    <meta name="twitter:creator" content="@creativetim">
+    <meta name="twitter:image" content="../../s3.amazonaws.com/creativetim_bucket/products/32/original/opt_lbd_thumbnail.jpg">
+    <meta name="twitter:data1" content="Light Bootstrap Dashboard by Creative Tim">
+    <meta name="twitter:label1" content="Product Type">
+    <meta name="twitter:data2" content="Free">
+    <meta name="twitter:label2" content="Price">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Light Bootstrap Dashboard by Creative Tim" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="dashboard.html" />
+    <meta property="og:image" content="../../s3.amazonaws.com/creativetim_bucket/products/32/original/opt_lbd_thumbnail.jpg"/>
+    <meta property="og:description" content="An admin dashboard template designed to be simple and beautiful." />
+    <meta property="og:site_name" content="Creative Tim" />
+
+    <!-- Bootstrap core CSS     -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Animation library for notifications   -->
+    <link href="{{ asset('assets/css/animate.min.css') }}" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="{{ asset('assets/css/light-bootstrap-dashboard.css') }}" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="{{ asset('assets/css/demo.css') }}" />
+
+    <link href="{{ asset('assets/open-iconic/font/css/open-iconic-bootstrap.css') }}" rel="stylesheet">
+
+    <!--     Fonts and icons     -->
+    <link href="{{asset('assets/maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('assets/css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
+    
+
+    <!--     ICHECK     -->
+    <link href="{{ asset('plugin/icheck/skins//all.css?v=1.0.2') }}" rel="stylesheet" />
+
+    <!--<link href="{{asset('assets/css/jquery-ui.css')}}" rel="stylesheet" />-->
+
+        <!--   Core JS Files   -->
+    <script src="{{ asset('assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>
+        <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+
+    <!--  Checkbox, Radio & Switch Plugins -->
+    <script src="{{ asset('assets/js/bootstrap-checkbox-radio-switch.js') }}"></script>
+
+    <!--  Charts Plugin -->
+    <script src="{{ asset('assets/js/chartist.min.js') }}"></script>
+
+    <!--  Notifications Plugin    -->
+    <script src="{{ asset('assets/js/bootstrap-notify.js') }}"></script>
+
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+    <script src="{{ asset('assets/js/light-bootstrap-dashboard.js') }}"></script>
+
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="{{ asset('assets/js/demo.js') }}"></script>
+
+    <!-- TINYMCE -->
+    <script type="text/javascript" src="{{ asset('plugin/tinymce/tinymce.min.js') }}"></script>
+    <!--<script type="text/javascript" src="{{ asset('plugin/tinymce/init-tinymce.js') }}"></script>-->
+
+    <!-- FILESTYLE -->
+    <script type="text/javascript" src="{{ asset('plugin/filestyle/bootstrap-filestyle.min.js') }}"></script>
+
+    <!-- ICHECK -->
+    <script type="text/javascript" src="{{ asset('plugin/icheck/icheck.js?v=1.0.2') }}"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <!--<div class="sidebar" data-color="purple" data-image="{{ asset('assets/img/sidebar-5.jpg') }}">
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="/" class="simple-text">
+                    ONG-BASE
+                </a>
+            </div>
+        </div>
+    </div>-->
+
+    <!--<div class="main-panel">-->
+        <div class="">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Tableau de bord</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-dashboard"></i>
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-globe"></i>
+                                    <b class="caret"></b>
+                                    <span class="notification">5</span>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Notification 1</a></li>
+                                <li><a href="#">Notification 2</a></li>
+                                <li><a href="#">Notification 3</a></li>
+                                <li><a href="#">Notification 4</a></li>
+                                <li><a href="#">Another notification</a></li>
+                              </ul>
+                        </li>
+                        <li>
+                           <a href="#">
+                                <i class="fa fa-search"></i>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="{{ url('projects/historisations/'.$project->short_code) }}">
+                               Dernieres modifications ({{ $project->projectHistorisation()->created_at }})
+                            </a>
+                        </li>
+                        <li>
+                           <a href="#">
+                               Account
+                            </a>
+                        </li>
+                        <li class="dropdown">
+                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Dropdown
+                                    <b class="caret"></b>
+                              </a>
+                              <ul class="dropdown-menu">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something</a></li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                              </ul>
+                        </li>
+                        <li>
+                            <a href="#">
+                                Log out
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="row">
+            <div class="col-md-8">
+                content
+            </div>
+            
+            <style>
+                .fix-sidebar .left-sidebar {
+    position: fixed;
+}
+.left-sidebar {
+    position: absolute;
+    width: 240px;
+    height: 100%;
+    top: 0px;
+    z-index: 20;
+    padding-top: 70px;
+    background: #fff;
+    -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.08);
+}
+.scroll-sidebar {
+    padding-bottom: 60px;
+}
+.user-profile {
+    position: relative;
+    background-size: cover;
+}
+.sidebar-nav {
+    background: #fff;
+}
+.sidebar-nav ul {
+    margin: 0px;
+    padding: 0px;
+}
+}
+.sidebar-nav ul li.nav-small-cap {
+    color: #99abb4;
+}
+.sidebar-nav ul li.nav-small-cap {
+    font-size: 12px;
+    margin-bottom: 0px;
+    padding: 14px 14px 14px 20px;
+    color: #263238;
+    font-weight: 500;
+}
+.sidebar-nav > ul > li {
+    margin-bottom: 10px;
+}
+.sidebar-nav ul li {
+    list-style: none;
+}
+.sidebar-nav > ul > li.active > a, .sidebar-nav > ul > li.active:hover > a {
+    color: #ffffff;
+    background: #26c6da !important;
+}
+
+.sidebar-nav > ul > li.active > a, .sidebar-nav > ul > li.active:hover > a {
+
+    color: #ffffff;
+    background: #26c6da !important;
+
+}
+.sidebar-nav > ul > li.active > a {
+
+    color: #ffffff;
+    font-weight: 500;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+}
+.sidebar-nav .has-arrow {
+
+    position: relative;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+    padding: 8px 35px 8px 15px;
+    display: block;
+    font-size: 15px;
+    border-radius: 4px;
+    white-space: nowrap;
+
+}
+.waves-effect {
+
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity, transform;
+    -webkit-transition: all 0.1s ease-out;
+    -moz-transition: all 0.1s ease-out;
+    -o-transition: all 0.1s ease-out;
+    -ms-transition: all 0.1s ease-out;
+    transition: all 0.1s ease-out;
+
+}
+.sidebar-nav ul li {
+
+    list-style: none;
+
+}
+
+
+
+.sidebar-nav > ul > li.active > a i, .sidebar-nav > ul > li.active:hover > a i {
+
+    color: #ffffff;
+
+}
+.sidebar-nav > ul > li.active > a i {
+
+    color: #26c6da;
+
+}
+.sidebar-nav > ul > li > a i {
+
+    color: #99abb4;
+
+}
+.sidebar-nav > ul > li > a i {
+
+    width: 27px;
+    height: 27px;
+    font-size: 21px;
+    line-height: 27px;
+    display: inline-block;
+    vertical-align: middle;
+    color: #99abb4;
+
+}
+* {
+
+    outline: none;
+
+}
+.sidebar-nav > ul > li.active > a, .sidebar-nav > ul > li.active:hover > a {
+
+    color: #ffffff;
+
+}
+.sidebar-nav > ul > li.active > a {
+
+    color: #ffffff;
+    font-weight: 500;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+    font-size: 15px;
+    white-space: nowrap;
+
+}
+.waves-effect {
+
+    cursor: pointer;
+
+}
+a {
+
+    color: #007bff;
+
+}
+.sidebar-nav ul li {
+
+    list-style: none;
+
+}
+.sidebar-nav > ul > li.active > a, .sidebar-nav > ul > li.active:hover > a {
+    color: #ffffff;
+}
+.sidebar-nav > ul > li.active > a {
+    color: #ffffff;
+    font-weight: 500;
+}
+.sidebar-nav ul li a {
+    color: #607d8b;
+}
+.sidebar-nav ul li a {
+    color: #607d8b;
+    font-size: 15px;
+    white-space: nowrap;
+}
+.waves-effect {
+    cursor: pointer;
+}
+
+
+
+.sidebar-nav .active > .has-arrow::after, .sidebar-nav .has-arrow[aria-expanded="true"]::after, .sidebar-nav li > .has-arrow.active::after {
+
+    -webkit-transform: rotate(-135deg) translate(0, -50%);
+    -ms-transform: rotate(-135deg) translate(0, -50%);
+    -o-transform: rotate(-135deg) translate(0, -50%);
+    top: 45%;
+    width: .58em;
+    transform: rotate(-135deg) translate(0, -50%);
+
+}
+.sidebar-nav > ul > li.active > a::after, .sidebar-nav > ul > li.active:hover > a::after {
+
+    border-color: #ffffff;
+
+}
+.sidebar-nav .has-arrow::after {
+
+    position: absolute;
+    content: '';
+    width: .55em;
+    height: .55em;
+    border-width: 1px 0 0 1px;
+    border-style: solid;
+    border-color: #607d8b;
+    right: 1em;
+    -webkit-transform: rotate(-45deg) translate(0, -50%);
+    -ms-transform: rotate(-45deg) translate(0, -50%);
+    -o-transform: rotate(-45deg) translate(0, -50%);
+    transform: rotate(-45deg) translate(0, -50%);
+    -webkit-transform-origin: top;
+    -ms-transform-origin: top;
+    -o-transform-origin: top;
+    transform-origin: top;
+    top: 47%;
+    -webkit-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+
+}
+.sidebar-nav > ul > li.active > a, .sidebar-nav > ul > li.active:hover > a {
+
+    color: #ffffff;
+
+}
+.sidebar-nav > ul > li.active > a {
+
+    color: #ffffff;
+    font-weight: 500;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+
+}
+.sidebar-nav ul li a {
+
+    color: #607d8b;
+    font-size: 15px;
+    white-space: nowrap;
+
+}
+.waves-effect {
+
+    cursor: pointer;
+
+}
+a {
+
+    color: #007bff;
+
+}
+.sidebar-nav ul li {
+
+    list-style: none;
+
+}
+            </style>
+
+            <div class="col-md-4">
+                <aside class="">
+            <!-- Sidebar scroll-->
+            <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;"><div class="scroll-sidebar" style="overflow: hidden; width: auto; height: 100%;">
+                <!-- User profile -->
+                <div class="user-profile" style="background: url(../assets/images/background/user-info.jpg) no-repeat;">
+                    <!-- User profile image -->
+                    <div class="profile-img"> <img src="../assets/images/users/profile.png" alt="user"> </div>
+                    <!-- User profile text-->
+                    <div class="profile-text"> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Markarn Doe</a>
+                        <div class="dropdown-menu animated flipInY" x-placement="bottom-start" style="position: absolute; transform: translate3d(5px, 41px, 0px); top: 0px; left: 0px; will-change: transform;"> <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a> <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a> <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
+                            <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
+                            <div class="dropdown-divider"></div> <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a> </div>
+                    </div>
+                </div>
+                <!-- End User profile text-->
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav active">
+                    <ul id="sidebarnav" class="in">
+                        <li class="nav-small-cap">PERSONAL</li>
+                        <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                            <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                                <li class="active"><a href="index.html" class="active">Dashboard 1</a></li>
+                                <li><a href="index2.html">Dashboard 2</a></li>
+                                <li><a href="index3.html">Dashboard 3</a></li>
+                                <li><a href="index4.html">Dashboard 4</a></li>
+                                <li><a href="index5.html">Dashboard 5</a></li>
+                                <li><a href="index6.html">Dashboard 6</a></li>
+                            </ul>
+                        </li>
+                        <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-laptop-windows"></i><span class="hide-menu">Template Demos</span></a>
+                            <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                                <li><a href="../minisidebar/index.html">Minisidebar</a></li>
+                                <li><a href="../horizontal/index2.html">Horizontal</a></li>
+                                <li><a href="../dark/index3.html">Dark Version</a></li>
+                                <li><a href="../material-rtl/index4.html">RTL Version</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">Apps</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="app-calendar.html">Calendar</a></li>
+                                <li><a href="app-chat.html">Chat app</a></li>
+                                <li><a href="app-ticket.html">Support Ticket</a></li>
+                                <li><a href="app-contact.html">Contact / Employee</a></li>
+                                <li><a href="app-contact2.html">Contact Grid</a></li>
+                                <li><a href="app-contact-detail.html">Contact Detail</a></li>
+                            </ul>
+                        </li>
+                        <li class="active"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="true"><i class="mdi mdi-email"></i><span class="hide-menu">Inbox</span></a>
+                            <ul aria-expanded="true" class="collapse in" style="">
+                                <li><a href="app-email.html">Mailbox</a></li>
+                                <li><a href="app-email-detail.html">Mailbox Detail</a></li>
+                                <li><a href="app-compose.html">Compose Mail</a></li>
+                            </ul>
+                        </li>
+                        <li class=""> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">Ui Elements</span></a>
+                            <ul aria-expanded="false" class="collapse" style="height: 10px;">
+                                <li><a href="ui-cards.html">Cards</a></li>
+                                <li><a href="ui-user-card.html">User Cards</a></li>
+                                <li><a href="ui-buttons.html">Buttons</a></li>
+                                <li><a href="ui-modals.html">Modals</a></li>
+                                <li><a href="ui-tab.html">Tab</a></li>
+                                <li><a href="ui-tooltip-popover.html">Tooltip &amp; Popover</a></li>
+                                <li><a href="ui-tooltip-stylish.html">Tooltip stylish</a></li>
+                                <li><a href="ui-sweetalert.html">Sweet Alert</a></li>
+                                <li><a href="ui-notification.html">Notification</a></li>
+                                <li><a href="ui-progressbar.html">Progressbar</a></li>
+                                <li><a href="ui-nestable.html">Nestable</a></li>
+                                <li><a href="ui-range-slider.html">Range slider</a></li>
+                                <li><a href="ui-timeline.html">Timeline</a></li>
+                                <li><a href="ui-typography.html">Typography</a></li>
+                                <li><a href="ui-horizontal-timeline.html">Horizontal Timeline</a></li>
+                                <li><a href="ui-session-timeout.html">Session Timeout</a></li>
+                                <li><a href="ui-session-ideal-timeout.html">Session Ideal Timeout</a></li>
+                                <li><a href="ui-bootstrap.html">Bootstrap Ui</a></li>
+                                <li><a href="ui-breadcrumb.html">Breadcrumb</a></li>
+                                <li><a href="ui-bootstrap-switch.html">Bootstrap Switch</a></li>
+                                <li><a href="ui-list-media.html">List Media</a></li>
+                                <li><a href="ui-ribbons.html">Ribbons</a></li>
+                                <li><a href="ui-grid.html">Grid</a></li>
+                                <li><a href="ui-carousel.html">Carousel</a></li>
+                                <li><a href="ui-date-paginator.html">Date-paginator</a></li>
+                                <li><a href="ui-dragable-portlet.html">Dragable Portlet</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-devider"></li>
+                        <li class="nav-small-cap">FORMS, TABLE &amp; WIDGETS</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Forms</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="form-basic.html">Basic Forms</a></li>
+                                <li><a href="form-layout.html">Form Layouts</a></li>
+                                <li><a href="form-addons.html">Form Addons</a></li>
+                                <li><a href="form-material.html">Form Material</a></li>
+                                <li><a href="form-float-input.html">Floating Lable</a></li>
+                                <li><a href="form-pickers.html">Form Pickers</a></li>
+                                <li><a href="form-upload.html">File Upload</a></li>
+                                <li><a href="form-mask.html">Form Mask</a></li>
+                                <li><a href="form-validation.html">Form Validation</a></li>
+                                <li><a href="form-dropzone.html">File Dropzone</a></li>
+                                <li><a href="form-icheck.html">Icheck control</a></li>
+                                <li><a href="form-img-cropper.html">Image Cropper</a></li>
+                                <li><a href="form-bootstrapwysihtml5.html">HTML5 Editor</a></li>
+                                <li><a href="form-typehead.html">Form Typehead</a></li>
+                                <li><a href="form-wizard.html">Form Wizard</a></li>
+                                <li><a href="form-xeditable.html">Xeditable Editor</a></li>
+                                <li><a href="form-summernote.html">Summernote Editor</a></li>
+                                <li><a href="form-tinymce.html">Tinymce Editor</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Tables</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="table-basic.html">Basic Tables</a></li>
+                                <li><a href="table-layout.html">Table Layouts</a></li>
+                                <li><a href="table-data-table.html">Data Tables</a></li>
+                                <li><a href="table-footable.html">Footable</a></li>
+                                <li><a href="table-jsgrid.html">Js Grid Table</a></li>
+                                <li><a href="table-responsive.html">Responsive Table</a></li>
+                                <li><a href="table-bootstrap.html">Bootstrap Tables</a></li>
+                                <li><a href="table-editable-table.html">Editable Table</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">Widgets</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="widget-apps.html">Widget Apps</a></li>
+                                <li><a href="widget-data.html">Widget Data</a></li>
+                                <li><a href="widget-charts.html">Widget Charts</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-devider"></li>
+                        <li class="nav-small-cap">EXTRA COMPONENTS</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-multiple"></i><span class="hide-menu">Page Layout</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="layout-single-column.html">1 Column</a></li>
+                                <li><a href="layout-fix-header.html">Fix header</a></li>
+                                <li><a href="layout-fix-sidebar.html">Fix sidebar</a></li>
+                                <li><a href="layout-fix-header-sidebar.html">Fixe header &amp; Sidebar</a></li>
+                                <li><a href="layout-boxed.html">Boxed Layout</a></li>
+                                <li><a href="layout-logo-center.html">Logo in Center</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-book-open-variant"></i><span class="hide-menu">Sample Pages</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="starter-kit.html">Starter Kit</a></li>
+                                <li><a href="pages-blank.html">Blank page</a></li>
+                                <li><a href="#" class="has-arrow">Authentication <span class="label label-rounded label-success">6</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="pages-login.html">Login 1</a></li>
+                                        <li><a href="pages-login-2.html">Login 2</a></li>
+                                        <li><a href="pages-register.html">Register</a></li>
+                                        <li><a href="pages-register2.html">Register 2</a></li>
+                                        <li><a href="pages-lockscreen.html">Lockscreen</a></li>
+                                        <li><a href="pages-recover-password.html">Recover password</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="pages-profile.html">Profile page</a></li>
+                                <li><a href="pages-animation.html">Animation</a></li>
+                                <li><a href="pages-fix-innersidebar.html">Sticky Left sidebar</a></li>
+                                <li><a href="pages-fix-inner-right-sidebar.html">Sticky Right sidebar</a></li>
+                                <li><a href="pages-invoice.html">Invoice</a></li>
+                                <li><a href="pages-treeview.html">Treeview</a></li>
+                                <li><a href="pages-utility-classes.html">Helper Classes</a></li>
+                                <li><a href="pages-search-result.html">Search result</a></li>
+                                <li><a href="pages-scroll.html">Scrollbar</a></li>
+                                <li><a href="pages-pricing.html">Pricing</a></li>
+                                <li><a href="pages-lightbox-popup.html">Lighbox popup</a></li>
+                                <li><a href="pages-gallery.html">Gallery</a></li>
+                                <li><a href="pages-faq.html">Faqs</a></li>
+                                <li><a href="#" class="has-arrow">Error Pages</a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="pages-error-400.html">400</a></li>
+                                        <li><a href="pages-error-403.html">403</a></li>
+                                        <li><a href="pages-error-404.html">404</a></li>
+                                        <li><a href="pages-error-500.html">500</a></li>
+                                        <li><a href="pages-error-503.html">503</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file-chart"></i><span class="hide-menu">Charts</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="chart-morris.html">Morris Chart</a></li>
+                                <li><a href="chart-chartist.html">Chartis Chart</a></li>
+                                <li><a href="chart-echart.html">Echarts</a></li>
+                                <li><a href="chart-flot.html">Flot Chart</a></li>
+                                <li><a href="chart-knob.html">Knob Chart</a></li>
+                                <li><a href="chart-chart-js.html">Chartjs</a></li>
+                                <li><a href="chart-sparkline.html">Sparkline Chart</a></li>
+                                <li><a href="chart-extra-chart.html">Extra chart</a></li>
+                                <li><a href="chart-peity.html">Peity Charts</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-brush"></i><span class="hide-menu">Icons</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="icon-material.html">Material Icons</a></li>
+                                <li><a href="icon-fontawesome.html">Fontawesome Icons</a></li>
+                                <li><a href="icon-themify.html">Themify Icons</a></li>
+                                <li><a href="icon-linea.html">Linea Icons</a></li>
+                                <li><a href="icon-weather.html">Weather Icons</a></li>
+                                <li><a href="icon-simple-lineicon.html">Simple Lineicons</a></li>
+                                <li><a href="icon-flag.html">Flag Icons</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-map-marker"></i><span class="hide-menu">Maps</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="map-google.html">Google Maps</a></li>
+                                <li><a href="map-vector.html">Vector Maps</a></li>
+                            </ul>
+                        </li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-arrange-send-backward"></i><span class="hide-menu">Multi level dd</span></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="#">item 1.1</a></li>
+                                <li><a href="#">item 1.2</a></li>
+                                <li> <a class="has-arrow" href="#" aria-expanded="false">Menu 1.3</a>
+                                    <ul aria-expanded="false" class="collapse">
+                                        <li><a href="#">item 1.3.1</a></li>
+                                        <li><a href="#">item 1.3.2</a></li>
+                                        <li><a href="#">item 1.3.3</a></li>
+                                        <li><a href="#">item 1.3.4</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">item 1.4</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div><div class="slimScrollBar" style="background: rgb(220, 220, 220) none repeat scroll 0% 0%; width: 5px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 74.8284px;"></div><div class="slimScrollRail" style="width: 5px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.2; z-index: 90; left: 1px;"></div></div>
+            <!-- End Sidebar scroll-->
+            <!-- Bottom points-->
+            <div class="sidebar-footer">
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="" data-original-title="Settings" aria-describedby="tooltip562597"><i class="ti-settings"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="" data-original-title="Email" aria-describedby="tooltip259014"><i class="mdi mdi-gmail"></i></a>
+                <!-- item--><a href="" class="link" data-toggle="tooltip" title="" data-original-title="Logout" aria-describedby="tooltip408184"><i class="mdi mdi-power"></i></a> </div>
+            <!-- End Bottom points-->
+        </aside>
+            </div>
+        </div>
+        @yield('content')
+
+        <footer class="footer">
+                <div class="container-fluid">
+                    <p class="copyright pull-right">
+                        &copy; 2016 <a href="http://www.creative-tim.com/">Creative Tim</a>, made with love for a better web
+                    </p>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+</body>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','../../www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46172202-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            //init tinyMCE
+
+            tinymce.init({
+                selector:"textarea.tinymce",
+              height: 500,
+              theme: 'modern',
+              readonly: 1,
+              plugins: [
+                'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen',
+                'insertdatetime media nonbreaking save table contextmenu directionality',
+                'emoticons template paste textcolor colorpicker textpattern imagetools'
+              ],
+              toolbar1: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+              toolbar2: 'print preview media | forecolor backcolor emoticons',
+              image_advtab: true,
+                statubar:true
+            });
+
+        })
+    </script>
+    
+    <script>
+        /*
+Template Name: Material Pro Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: js
+*/
+(function (global, factory) {
+  if (typeof define === "function" && define.amd) {
+    define(['jquery'], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(require('jquery'));
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(global.jquery);
+    global.metisMenu = mod.exports;
+  }
+})(this, function (_jquery) {
+  'use strict';
+
+  var _jquery2 = _interopRequireDefault(_jquery);
+
+  function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : {
+      default: obj
+    };
+  }
+
+  var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+    return typeof obj;
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+  };
+
+  function _classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  }
+
+  var Util = function ($) {
+    var transition = false;
+
+    var TransitionEndEvent = {
+      WebkitTransition: 'webkitTransitionEnd',
+      MozTransition: 'transitionend',
+      OTransition: 'oTransitionEnd otransitionend',
+      transition: 'transitionend'
+    };
+
+    function getSpecialTransitionEndEvent() {
+      return {
+        bindType: transition.end,
+        delegateType: transition.end,
+        handle: function handle(event) {
+          if ($(event.target).is(this)) {
+            return event.handleObj.handler.apply(this, arguments);
+          }
+          return undefined;
+        }
+      };
+    }
+
+    function transitionEndTest() {
+      if (window.QUnit) {
+        return false;
+      }
+
+      var el = document.createElement('mm');
+
+      for (var name in TransitionEndEvent) {
+        if (el.style[name] !== undefined) {
+          return {
+            end: TransitionEndEvent[name]
+          };
+        }
+      }
+
+      return false;
+    }
+
+    function transitionEndEmulator(duration) {
+      var _this2 = this;
+
+      var called = false;
+
+      $(this).one(Util.TRANSITION_END, function () {
+        called = true;
+      });
+
+      setTimeout(function () {
+        if (!called) {
+          Util.triggerTransitionEnd(_this2);
+        }
+      }, duration);
+
+      return this;
+    }
+
+    function setTransitionEndSupport() {
+      transition = transitionEndTest();
+      $.fn.emulateTransitionEnd = transitionEndEmulator;
+
+      if (Util.supportsTransitionEnd()) {
+        $.event.special[Util.TRANSITION_END] = getSpecialTransitionEndEvent();
+      }
+    }
+
+    var Util = {
+      TRANSITION_END: 'mmTransitionEnd',
+
+      triggerTransitionEnd: function triggerTransitionEnd(element) {
+        $(element).trigger(transition.end);
+      },
+      supportsTransitionEnd: function supportsTransitionEnd() {
+        return Boolean(transition);
+      }
+    };
+
+    setTransitionEndSupport();
+
+    return Util;
+  }(jQuery);
+
+  var MetisMenu = function ($) {
+
+    var NAME = 'metisMenu';
+    var DATA_KEY = 'metisMenu';
+    var EVENT_KEY = '.' + DATA_KEY;
+    var DATA_API_KEY = '.data-api';
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var TRANSITION_DURATION = 350;
+
+    var Default = {
+      toggle: true,
+      preventDefault: true,
+      activeClass: 'active',
+      collapseClass: 'collapse',
+      collapseInClass: 'in',
+      collapsingClass: 'collapsing',
+      triggerElement: 'a',
+      parentTrigger: 'li',
+      subMenu: 'ul'
+    };
+
+    var Event = {
+      SHOW: 'show' + EVENT_KEY,
+      SHOWN: 'shown' + EVENT_KEY,
+      HIDE: 'hide' + EVENT_KEY,
+      HIDDEN: 'hidden' + EVENT_KEY,
+      CLICK_DATA_API: 'click' + EVENT_KEY + DATA_API_KEY
+    };
+
+    var MetisMenu = function () {
+      function MetisMenu(element, config) {
+        _classCallCheck(this, MetisMenu);
+
+        this._element = element;
+        this._config = this._getConfig(config);
+        this._transitioning = null;
+
+        this.init();
+      }
+
+      MetisMenu.prototype.init = function init() {
+        var self = this;
+        $(this._element).find(this._config.parentTrigger + '.' + this._config.activeClass).has(this._config.subMenu).children(this._config.subMenu).attr('aria-expanded', true).addClass(this._config.collapseClass + ' ' + this._config.collapseInClass);
+
+        $(this._element).find(this._config.parentTrigger).not('.' + this._config.activeClass).has(this._config.subMenu).children(this._config.subMenu).attr('aria-expanded', false).addClass(this._config.collapseClass);
+
+        $(this._element).find(this._config.parentTrigger).has(this._config.subMenu).children(this._config.triggerElement).on(Event.CLICK_DATA_API, function (e) {
+          var _this = $(this);
+          var _parent = _this.parent(self._config.parentTrigger);
+          var _siblings = _parent.siblings(self._config.parentTrigger).children(self._config.triggerElement);
+          var _list = _parent.children(self._config.subMenu);
+          if (self._config.preventDefault) {
+            e.preventDefault();
+          }
+          if (_this.attr('aria-disabled') === 'true') {
+            return;
+          }
+          if (_parent.hasClass(self._config.activeClass)) {
+            _this.attr('aria-expanded', false);
+            self._hide(_list);
+          } else {
+            self._show(_list);
+            _this.attr('aria-expanded', true);
+            if (self._config.toggle) {
+              _siblings.attr('aria-expanded', false);
+            }
+          }
+
+          if (self._config.onTransitionStart) {
+            self._config.onTransitionStart(e);
+          }
+        });
+      };
+
+      MetisMenu.prototype._show = function _show(element) {
+        if (this._transitioning || $(element).hasClass(this._config.collapsingClass)) {
+          return;
+        }
+        var _this = this;
+        var _el = $(element);
+
+        var startEvent = $.Event(Event.SHOW);
+        _el.trigger(startEvent);
+
+        if (startEvent.isDefaultPrevented()) {
+          return;
+        }
+
+        _el.parent(this._config.parentTrigger).addClass(this._config.activeClass);
+
+        if (this._config.toggle) {
+          this._hide(_el.parent(this._config.parentTrigger).siblings().children(this._config.subMenu + '.' + this._config.collapseInClass).attr('aria-expanded', false));
+        }
+
+        _el.removeClass(this._config.collapseClass).addClass(this._config.collapsingClass).height(0);
+
+        this.setTransitioning(true);
+
+        var complete = function complete() {
+
+          _el.removeClass(_this._config.collapsingClass).addClass(_this._config.collapseClass + ' ' + _this._config.collapseInClass).height('').attr('aria-expanded', true);
+
+          _this.setTransitioning(false);
+
+          _el.trigger(Event.SHOWN);
+        };
+
+        if (!Util.supportsTransitionEnd()) {
+          complete();
+          return;
+        }
+
+        _el.height(_el[0].scrollHeight).one(Util.TRANSITION_END, complete).emulateTransitionEnd(TRANSITION_DURATION);
+      };
+
+      MetisMenu.prototype._hide = function _hide(element) {
+
+        if (this._transitioning || !$(element).hasClass(this._config.collapseInClass)) {
+          return;
+        }
+        var _this = this;
+        var _el = $(element);
+
+        var startEvent = $.Event(Event.HIDE);
+        _el.trigger(startEvent);
+
+        if (startEvent.isDefaultPrevented()) {
+          return;
+        }
+
+        _el.parent(this._config.parentTrigger).removeClass(this._config.activeClass);
+        _el.height(_el.height())[0].offsetHeight;
+
+        _el.addClass(this._config.collapsingClass).removeClass(this._config.collapseClass).removeClass(this._config.collapseInClass);
+
+        this.setTransitioning(true);
+
+        var complete = function complete() {
+          if (_this._transitioning && _this._config.onTransitionEnd) {
+            _this._config.onTransitionEnd();
+          }
+
+          _this.setTransitioning(false);
+          _el.trigger(Event.HIDDEN);
+
+          _el.removeClass(_this._config.collapsingClass).addClass(_this._config.collapseClass).attr('aria-expanded', false);
+        };
+
+        if (!Util.supportsTransitionEnd()) {
+          complete();
+          return;
+        }
+
+        _el.height() == 0 || _el.css('display') == 'none' ? complete() : _el.height(0).one(Util.TRANSITION_END, complete).emulateTransitionEnd(TRANSITION_DURATION);
+      };
+
+      MetisMenu.prototype.setTransitioning = function setTransitioning(isTransitioning) {
+        this._transitioning = isTransitioning;
+      };
+
+      MetisMenu.prototype.dispose = function dispose() {
+        $.removeData(this._element, DATA_KEY);
+
+        $(this._element).find(this._config.parentTrigger).has(this._config.subMenu).children(this._config.triggerElement).off('click');
+
+        this._transitioning = null;
+        this._config = null;
+        this._element = null;
+      };
+
+      MetisMenu.prototype._getConfig = function _getConfig(config) {
+        config = $.extend({}, Default, config);
+        return config;
+      };
+
+      MetisMenu._jQueryInterface = function _jQueryInterface(config) {
+        return this.each(function () {
+          var $this = $(this);
+          var data = $this.data(DATA_KEY);
+          var _config = $.extend({}, Default, $this.data(), (typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object' && config);
+
+          if (!data && /dispose/.test(config)) {
+            this.dispose();
+          }
+
+          if (!data) {
+            data = new MetisMenu(this, _config);
+            $this.data(DATA_KEY, data);
+          }
+
+          if (typeof config === 'string') {
+            if (data[config] === undefined) {
+              throw new Error('No method named "' + config + '"');
+            }
+            data[config]();
+          }
+        });
+      };
+
+      return MetisMenu;
+    }();
+
+    /**
+     * ------------------------------------------------------------------------
+     * jQuery
+     * ------------------------------------------------------------------------
+     */
+
+    $.fn[NAME] = MetisMenu._jQueryInterface;
+    $.fn[NAME].Constructor = MetisMenu;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return MetisMenu._jQueryInterface;
+    };
+    return MetisMenu;
+  }(jQuery);
+});
+    </script>
+
+    <script>
+        $(function(){"use strict";$(function(){$(".preloader").fadeOut()}),jQuery(document).on("click",".mega-dropdown",function(i){i.stopPropagation()});var i=function(){var i=window.innerWidth>0?window.innerWidth:this.screen.width,e=70;1170>i?($("body").addClass("mini-sidebar"),$(".navbar-brand span").hide(),$(".scroll-sidebar, .slimScrollDiv").css("overflow-x","visible").parent().css("overflow","visible"),$(".sidebartoggler i").addClass("ti-menu")):($("body").removeClass("mini-sidebar"),$(".navbar-brand span").show());var o=(window.innerHeight>0?window.innerHeight:this.screen.height)-1;o-=e,1>o&&(o=1),o>e&&$(".page-wrapper").css("min-height",o+"px")};$(window).ready(i),$(window).on("resize",i),$(".sidebartoggler").on("click",function(){$("body").hasClass("mini-sidebar")?($("body").trigger("resize"),$(".scroll-sidebar, .slimScrollDiv").css("overflow","hidden").parent().css("overflow","visible"),$("body").removeClass("mini-sidebar"),$(".navbar-brand span").show()):($("body").trigger("resize"),$(".scroll-sidebar, .slimScrollDiv").css("overflow-x","visible").parent().css("overflow","visible"),$("body").addClass("mini-sidebar"),$(".navbar-brand span").hide())}),$(".fix-header .topbar").stick_in_parent({}),$(".nav-toggler").click(function(){$("body").toggleClass("show-sidebar"),$(".nav-toggler i").toggleClass("ti-menu"),$(".nav-toggler i").addClass("ti-close")}),$(".sidebartoggler").on("click",function(){}),$(".search-box a, .search-box .app-search .srh-btn").on("click",function(){$(".app-search").toggle(200)}),$(".right-side-toggle").click(function(){$(".right-sidebar").slideDown(50),$(".right-sidebar").toggleClass("shw-rside")}),$(".floating-labels .form-control").on("focus blur",function(i){$(this).parents(".form-group").toggleClass("focused","focus"===i.type||this.value.length>0)}).trigger("blur"),$(function(){for(var i=window.location,e=$("ul#sidebarnav a").filter(function(){return this.href==i}).addClass("active").parent().addClass("active");;){if(!e.is("li"))break;e=e.parent().addClass("in").parent().addClass("active")}}),$(function(){$('[data-toggle="tooltip"]').tooltip()}),$(function(){$('[data-toggle="popover"]').popover()}),$(function(){$("#sidebarnav").metisMenu()}),$(".scroll-sidebar").slimScroll({position:"left",size:"5px",height:"100%",color:"#dcdcdc"}),$(".message-center").slimScroll({position:"right",size:"5px",color:"#dcdcdc"}),$(".aboutscroll").slimScroll({position:"right",size:"5px",height:"80",color:"#dcdcdc"}),$(".message-scroll").slimScroll({position:"right",size:"5px",height:"570",color:"#dcdcdc"}),$(".chat-box").slimScroll({position:"right",size:"5px",height:"470",color:"#dcdcdc"}),$(".slimscrollright").slimScroll({height:"100%",position:"right",size:"5px",color:"#dcdcdc"}),$("body").trigger("resize"),$(".list-task li label").click(function(){$(this).toggleClass("task-done")}),$("#to-recover").on("click",function(){$("#loginform").slideUp(),$("#recoverform").fadeIn()}),$('a[data-action="collapse"]').on("click",function(i){i.preventDefault(),$(this).closest(".card").find('[data-action="collapse"] i').toggleClass("ti-minus ti-plus"),$(this).closest(".card").children(".card-body").collapse("toggle")}),$('a[data-action="expand"]').on("click",function(i){i.preventDefault(),$(this).closest(".card").find('[data-action="expand"] i').toggleClass("mdi-arrow-expand mdi-arrow-compress"),$(this).closest(".card").toggleClass("card-fullscreen")}),$('a[data-action="close"]').on("click",function(){$(this).closest(".card").removeClass().slideUp("fast")}),$("#monthchart").sparkline([5,6,2,9,4,7,10,12],{type:"bar",height:"35",barWidth:"4",resize:!0,barSpacing:"4",barColor:"#1e88e5"}),$("#lastmonthchart").sparkline([5,6,2,9,4,7,10,12],{type:"bar",height:"35",barWidth:"4",resize:!0,barSpacing:"4",barColor:"#7460ee"})});
+    </script>
+
+    <script>
+        /*
+Template Name: Material Pro Admin
+Author: Themedesigner
+Email: niravjoshi87@gmail.com
+File: js
+*/
+$(function () {
+    "use strict";
+    // ============================================================== 
+    // Sales overview
+    // ============================================================== 
+    var chart2 = new Chartist.Bar('.amp-pxl', {
+          labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+          series: [
+            [9, 5, 3, 7, 5, 10, 3],
+            [6, 3, 9, 5, 4, 6, 4]
+          ]
+        }, {
+          axisX: {
+            // On the x-axis start means top and end means bottom
+            position: 'end',
+            showGrid: false
+          },
+          axisY: {
+            // On the y-axis start means left and end means right
+            position: 'start'
+          },
+        high:'12',
+        low: '0',
+        plugins: [
+            Chartist.plugins.tooltip()
+        ]
+    });
+    
+    // ============================================================== 
+    // Newsletter
+    // ============================================================== 
+    
+    var chart = new Chartist.Line('.campaign', {
+          labels: [1, 2, 3, 4, 5, 6, 7, 8],
+          series: [
+            [0, 5, 6, 8, 25, 9, 8, 24]
+            , [0, 3, 1, 2, 8, 1, 5, 1]
+          ]}, {
+          low: 0,
+          high: 28,
+          showArea: true,
+          fullWidth: true,
+          plugins: [
+            Chartist.plugins.tooltip()
+          ],
+            axisY: {
+            onlyInteger: true
+            , scaleMinSpace: 40    
+            , offset: 20
+            , labelInterpolationFnc: function (value) {
+                return (value / 1) + 'k';
+            }
+        },
+        });
+
+        // Offset x1 a tiny amount so that the straight stroke gets a bounding box
+        // Straight lines don't get a bounding box 
+        // Last remark on -> http://www.w3.org/TR/SVG11/coords.html#ObjectBoundingBox
+        chart.on('draw', function(ctx) {  
+          if(ctx.type === 'area') {    
+            ctx.element.attr({
+              x1: ctx.x1 + 0.001
+            });
+          }
+        });
+
+        // Create the gradient definition on created event (always after chart re-render)
+        chart.on('created', function(ctx) {
+          var defs = ctx.svg.elem('defs');
+          defs.elem('linearGradient', {
+            id: 'gradient',
+            x1: 0,
+            y1: 1,
+            x2: 0,
+            y2: 0
+          }).elem('stop', {
+            offset: 0,
+            'stop-color': 'rgba(255, 255, 255, 1)'
+          }).parent().elem('stop', {
+            offset: 1,
+            'stop-color': 'rgba(38, 198, 218, 1)'
+          });
+        });
+    
+            
+    var chart = [chart2, chart];
+
+    // ============================================================== 
+    // This is for the animation
+    // ==============================================================
+    
+    for (var i = 0; i < chart.length; i++) {
+        chart[i].on('draw', function(data) {
+            if (data.type === 'line' || data.type === 'area') {
+                data.element.animate({
+                    d: {
+                        begin: 500 * data.index,
+                        dur: 500,
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                        to: data.path.clone().stringify(),
+                        easing: Chartist.Svg.Easing.easeInOutElastic
+                    }
+                });
+            }
+            if (data.type === 'bar') {
+                data.element.animate({
+                    y2: {
+                        dur: 500,
+                        from: data.y1,
+                        to: data.y2,
+                        easing: Chartist.Svg.Easing.easeInOutElastic
+                    },
+                    opacity: {
+                        dur: 500,
+                        from: 0,
+                        to: 1,
+                        easing: Chartist.Svg.Easing.easeInOutElastic
+                    }
+                });
+            }
+        });
+    }
+    
+    // ============================================================== 
+    // Our visitor
+    // ============================================================== 
+    
+    var chart = c3.generate({
+        bindto: '#visitor',
+        data: {
+            columns: [
+                ['Other', 30],
+                ['Desktop', 10],
+                ['Tablet', 40],
+                ['Mobile', 50],
+            ],
+            
+            type : 'donut',
+            onclick: function (d, i) { console.log("onclick", d, i); },
+            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        },
+        donut: {
+            label: {
+                show: false
+              },
+            title: "Our visitor",
+            width:20,
+            
+        },
+        
+        legend: {
+          hide: true
+          //or hide: 'data1'
+          //or hide: ['data1', 'data2']
+        },
+        color: {
+              pattern: ['#eceff1', '#745af2', '#26c6da', '#1e88e5']
+        }
+    });
+ 
+    // ============================================================== 
+    // Badnwidth usage
+    // ============================================================== 
+    new Chartist.Line('.usage', {
+        labels: ['0', '4', '8', '12', '16', '20', '24', '30']
+        , series: [
+        [5, 0, 12, 1, 8, 3, 12, 15]
+
+      ]
+    }, {
+        high:10
+        , low: 0
+        , showArea: true
+        , fullWidth: true
+        , plugins: [
+        Chartist.plugins.tooltip()
+      ], // As this is axis specific we need to tell Chartist to use whole numbers only on the concerned axis
+        axisY: {
+            onlyInteger: true
+            , offset: 20
+            , showLabel: false
+            , showGrid: false
+            , labelInterpolationFnc: function (value) {
+                return (value / 1) + 'k';
+            }
+        }
+        , axisX: {
+            showLabel: false
+            , divisor: 1
+            , showGrid: false
+            , offset: 0
+        }
+    });
+    // ============================================================== 
+    // Download count
+    // ============================================================== 
+    var sparklineLogin = function () {
+        $('.spark-count').sparkline([4, 5, 0, 10, 9, 12, 4, 9, 4, 5, 3, 10, 9, 12, 10, 9, 12, 4, 9], {
+            type: 'bar'
+            , width: '100%'
+            , height: '70'
+            , barWidth: '2'
+            , resize: true
+            , barSpacing: '6'
+            , barColor: 'rgba(255, 255, 255, 0.3)'
+        });
+        
+    }
+    var sparkResize;
+    
+    sparklineLogin();
+    
+    
+});
+
+    </script>
+</html>
+
+
+        

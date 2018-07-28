@@ -15,11 +15,13 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('bayeur_id');
-            $table->integer('type_projet_id');
+            //$table->integer('bayeur_id');
+            $table->integer('ong_id');
+            $table->integer('type_project_id');
+            $table->integer('etat_project_id')->default(1);
             $table->string('libelle');
             $table->string('short_code');
-            $table->integer('active', 0);
+            $table->integer('active')->nullable();
             $table->dateTime('date_debut');
             $table->dateTime('date_fin');
             $table->timestamps();

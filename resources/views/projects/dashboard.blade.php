@@ -106,18 +106,22 @@
 					<div class="panel-body" style="display: block">
 						<p>
 							<div class="row">
-								<a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/context') }}/{{ $project->short_code }}">
-							        <div class="info-box">
-							            <span class="info-box-icon bg-red"></span>
+								@if($project->projectsCategories->where('categorie_id', 1)->first())
+									<a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/context') }}/{{ $project->short_code }}">
+								        <div class="info-box">
+								            <span class="info-box-icon bg-red"></span>
 
-							            <div class="info-box-content">
-							              <span class="info-box-text">Context</span>
-							            	@if($project->context)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
-							            	@endif
-							            </div>
-							        </div>
-							    </a>
+								            <div class="info-box-content">
+								              <span class="info-box-text">Context</span>
+								            	@if($project->context)
+								            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+								            	@endif
+								            </div>
+								        </div>
+								    </a>
+							    @endif
+
+							    @if($project->projectsCategories->where('categorie_id', 2)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/justificatif') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -130,6 +134,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif
+
+							    @if($project->projectsCategories->where('categorie_id', 3)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/objectifs') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -141,6 +148,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif 
+								
+								@if($project->projectsCategories->where('categorie_id', 4)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/cible') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -153,6 +163,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif
+								
+								@if($project->projectsCategories->where('categorie_id', 5)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/resultats') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -165,6 +178,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif
+
+							    @if($project->projectsCategories->where('categorie_id', 6)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/composante') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -177,6 +193,9 @@
 								            </div>
 							        </div>
 							    </a>
+							    @endif
+								
+								@if($project->projectsCategories->where('categorie_id', 7)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/methodologie') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -189,7 +208,10 @@
 							            </div>
 							        </div>
 							    </a>
-							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/context') }}/{{ $project->short_code }}">
+							    @endif
+								
+								@if($project->projectsCategories->where('categorie_id', 8)->first())
+							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/hypothese') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
 
@@ -201,6 +223,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif 
+
+							    @if($project->projectsCategories->where('categorie_id', 9)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/activites') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -213,6 +238,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif
+
+								@if($project->projectsCategories->where('categorie_id', 10)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/cadre-logique') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -223,6 +251,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif 
+
+								@if($project->projectsCategories->where('categorie_id', 11)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/execution') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -235,6 +266,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif
+
+							    @if($project->projectsCategories->where('categorie_id', 12)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/budget') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -247,6 +281,9 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif
+
+							    @if($project->projectsCategories->where('categorie_id', 13)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/synoptique') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
@@ -256,6 +293,7 @@
 							            </div>
 							        </div>
 							    </a>
+							    @endif
 			    			</div>
 						</p>
 					</div>

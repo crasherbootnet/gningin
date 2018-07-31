@@ -32,15 +32,17 @@
 						</thead>
 						<tbody id="form-resultat">
 							@php $i=1; @endphp
-							@foreach($resultats as $resultat)
-								<tr class="resultat">
-									<td>{{ $i }}</td>
-									<td class="libelle">{{ $resultat->libelle }}</td>
-									<td class="content">{{ $resultat->content }}</td>
-									<td><a href="" class="deleted"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a></td>
-								</tr>
-								@php $i+=1; @endphp
-							@endforeach
+							@if($resultats)
+								@foreach($resultats as $resultat)
+									<tr class="resultat">
+										<td>{{ $i }}</td>
+										<td class="libelle">{{ $resultat->libelle }}</td>
+										<td class="content">{{ $resultat->content }}</td>
+										<td><a href="" class="deleted"><span><i class="fa fa-trash-o" aria-hidden="true"></i></span></a></td>
+									</tr>
+									@php $i+=1; @endphp
+								@endforeach
+							@endif
 						</tbody>
 					</table>
 					</div>

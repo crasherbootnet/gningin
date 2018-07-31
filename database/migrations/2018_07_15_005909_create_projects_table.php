@@ -19,6 +19,7 @@ class CreateProjectsTable extends Migration
             $table->integer('ong_id');
             $table->integer('type_project_id');
             $table->integer('etat_project_id')->default(1);
+            $table->integer('is_modification')->default(0);
             $table->string('libelle');
             $table->string('short_code');
             $table->integer('active')->nullable();

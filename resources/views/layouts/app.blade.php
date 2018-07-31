@@ -148,7 +148,13 @@
                                 <li><a href="#">Separated link</a></li>
                               </ul>
                             </li>
-                            <li><a href="#">Log out</a></li>
+                            <li>
+                                @component('components.logout') 
+                                    @slot('space') 
+                                        ongs 
+                                    @endslot
+                                @endcomponent
+                            </li>
                         </ul>
                     </div>
                 </div>

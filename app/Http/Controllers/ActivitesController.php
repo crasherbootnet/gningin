@@ -66,6 +66,10 @@ class ActivitesController extends Controller
                             'date_fin' => $request->date_fin
         ]);
 
+        // on change le status de project on le passant en mode modification
+        $project->is_modification = 1;
+        $project->save();
+
         // enregistrement des personnes
         foreach ($personnes as $personne) {
             ActivitePersonne::create([

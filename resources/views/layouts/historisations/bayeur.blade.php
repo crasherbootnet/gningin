@@ -65,11 +65,15 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{ asset('assets/css/pe-icon-7-stroke.css') }}" rel="stylesheet" />
     
-
+    
     <!--     ICHECK     -->
     <link href="{{ asset('plugin/icheck/skins//all.css?v=1.0.2') }}" rel="stylesheet" />
 
     <!--<link href="{{asset('assets/css/jquery-ui.css')}}" rel="stylesheet" />-->
+    
+    <link href="{{ asset('css/style_tree.css') }}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href="{{ asset('css/colors/blue.css') }}" id="theme" rel="stylesheet">
 
         <!--   Core JS Files   -->
     <script src="{{ asset('assets/js/jquery-1.10.2.js') }}" type="text/javascript"></script>
@@ -102,6 +106,11 @@
 
     <!-- ICHECK -->
     <script type="text/javascript" src="{{ asset('plugin/icheck/icheck.js?v=1.0.2') }}"></script>
+    
+    <script type="text/javascript" src="{{ asset('assets/plugins/jquery/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/sidebarmenu.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/sticky-kit-master/dist/sticky-kit.min.js')}}"></script>
+    <script type="text/javascript" src="{{ asset('js/custom.min.js')}}"></script>
 </head>
 <body>
 
@@ -119,30 +128,11 @@
             </div>
 
             <ul class="nav">
-                <li class="active">
-                    <a href="">
-                        <i class="pe-7s-graph"></i>
-                        <p>Tableau de bord</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/bayeurs/ong') }}">
-                        <i class="pe-7s-user"></i>
-                        <p>Ong</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="{{ url('/bayeurs/projects') }}">
-                        <i class="pe-7s-user"></i>
-                        <p>Projects</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="">
-                        <i class="pe-7s-user"></i>
-                        <p>params</p>
-                    </a>
-                </li>
+                <div class="scroll-sidebar">
+                    <nav class="sidebar-nav">
+                        @yield('sidebar')
+                    </nav>
+                </div>
             </ul>
         </div>
     </div>
@@ -150,49 +140,14 @@
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed">
             <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Tableau de bord</a>
-                </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-dashboard"></i>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret"></b>
-                                    <span class="notification">5</span>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="#">
-                                <i class="fa fa-search"></i>
-                            </a>
+                            <a href="{{ url('bayeurs/ong/project-follow/'.$projectHistorisation->project->short_code)}}">Retour</a>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                           <a href="{{ url('projects/historisations/'.$project->short_code) }}">
-                               Dernieres modifications ({{ $project->projectHistorisation()->created_at }})
-                            </a>
-                        </li>
                         <li>
                            <a href="#">
                                Account
@@ -290,4 +245,3 @@
 </html>
 
 
-        

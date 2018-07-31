@@ -77,10 +77,25 @@ class ProjectController extends Controller
 
         // on vérifie si le project a une historisation
         if(count($project->projectsHistorisations) == 0)
-        {
+        {   
             return view('bayeurs.nothing');
         }
 
         return view('bayeurs.projects.show', ['project' => $project]);
+    }
+
+    /*
+        @param App\Bayeur $bayeur
+        @return array : Permet de retourner tous les projects du bayeur
+    */
+    public function getAllProjectsOfBayeur($bayeur){
+        $projects = new Collection;
+        foreach ($bayeur->ongs as $ong) {
+            foreach ($ong->projects as $project) {
+                $projects->push($project);
+            }
+        }
+
+        return $projects;
     }
 }

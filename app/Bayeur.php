@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bayeur extends Model
 {
+    //use Notifiable;
+
     public $table = "bayeurs";
     public $fillable = ["user_id"];
 

@@ -45,6 +45,21 @@ return [
             'driver' => 'token',
             'provider' => 'users',
         ],
+
+        'teacher'  => [
+            'driver'  => 'session',
+            'provider' => 'teachers',
+        ],
+
+        'ong'  => [
+            'driver'  => 'session',
+            'provider' => 'ongs',
+        ],
+
+        'bayeur'  => [
+            'driver'  => 'session',
+            'provider' => 'bayeur',
+        ],
     ],
 
     /*
@@ -74,6 +89,21 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model'  => App\Teacher::class,
+        ],
+
+        'ongs' => [
+            'driver' => 'eloquent',
+            'model'  => App\User::class,
+        ],
+
+        'bayeurs' => [
+            'driver' => 'eloquent',
+            'model'  => App\User::class,
+        ],
     ],
 
     /*

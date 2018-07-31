@@ -1,4 +1,4 @@
-@extends('layouts.historisations.ong')
+@extends('layouts.historisations.bayeur')
 
 @section('title', 'Historisation')
 
@@ -6,9 +6,9 @@
 @section('sidebar')
 <ul id="sidebarnav">
     <li> 
-        <a class="has-arrow waves-effect waves-dark" href="{{ url('bayeurs/projects/historisations/'.$projectHistorisation->project->short_code) }}" aria-expanded="false">
+        <a class="has-arrow waves-effect waves-dark" href="{{ url('bayeurs/projects/historisation-context/'.$projectHistorisation->id) }}" aria-expanded="false">
             <i class="mdi mdi-widgets"></i>
-            <span class="hide-menu">Today ({{ $projectHistorisation->created_at }})</span>
+            <span class="hide-menu">Derniere version ({{ $projectHistorisation->created_at }})</span>
         </a>
     </li>
 
@@ -20,7 +20,11 @@
             </a>
             <ul aria-expanded="false" class="collapse">
                 @foreach($projectHist->projectshistorisations as $historisation)
-                    <li><a href="{{ url('bayeurs/projects/historisations-versions/'.$historisation->id) }}">{{ $historisation->created_at }}</a></li>
+                    @if($projectHistorisation->id == $historisation->id)
+                        <li class="active"><a href="{{ url('bayeurs/projects/historisations-versions/'.$historisation->id) }}">{{ $historisation->created_at }}</a></li>
+                    @else
+                        <li><a href="{{ url('bayeurs/projects/historisations-versions/'.$historisation->id) }}">{{ $historisation->created_at }}</a></li>
+                    @endif
                 @endforeach
             </ul>
         </li>
@@ -148,7 +152,7 @@
                                 @endif
 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 2)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/justificatif') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-justificatif') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 
@@ -163,7 +167,7 @@
                                 @endif
 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 3)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/objectifs') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-objectifs') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
                                         <div class="info-box-content">
@@ -177,7 +181,7 @@
                                 @endif 
                                 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 4)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/cible') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-cible') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 
@@ -192,7 +196,7 @@
                                 @endif
                                 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 5)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/resultats') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-resultats') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 
@@ -207,7 +211,7 @@
                                 @endif
 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 6)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/composante') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-composante') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 
@@ -222,7 +226,7 @@
                                 @endif
                                 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 7)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/methodologie') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-methodologie') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 
@@ -237,7 +241,7 @@
                                 @endif
                                 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 8)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/hypothese') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-hypothese') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 
@@ -267,7 +271,7 @@
                                 @endif
 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 10)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/cadre-logique') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-cadre-logique') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 
@@ -280,7 +284,7 @@
                                 @endif 
 
                                 @if($projectHistorisation->project->projectsCategories->where('categorie_id', 11)->first())
-                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('projects/execution') }}/{{ $projectHistorisation->project->short_code }}">
+                                <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/projects/historisation-execution') }}/{{ $projectHistorisation->id }}">
                                     <div class="info-box">
                                         <span class="info-box-icon bg-red"></span>
 

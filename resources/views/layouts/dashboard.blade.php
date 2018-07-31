@@ -113,14 +113,14 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="/" class="simple-text">
+                <a href="{{  url('projects')  }}" class="simple-text">
                     ONG-BASE
                 </a>
             </div>
 
             <ul class="nav">
                 <li class="active">
-                    <a href="/follow-projects/{{ $project->short_code }}">
+                    <a href="{{ url('projects/show/'.$project->short_code) }}">
                         <i class="pe-7s-graph"></i>
                         <p>Tableau de bord</p>
                     </a>
@@ -157,7 +157,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Tableau de bord</a>
+                    <a class="navbar-brand" href="{{ url('projects/show/'.$project->short_code) }}">Tableau de bord</a>
                 </div>
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
@@ -203,15 +203,17 @@
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something</a></li>
                                 <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
+                                <li><a href="{{ url('projects') }}">Change project</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:void(0)" id="completeSave">Enregistrement</a></li>
                               </ul>
                         </li>
                         <li>
-                            <a href="#">
-                                Log out
-                            </a>
+                            @component('components.logout') 
+                              @slot('space') 
+                                ongs  
+                              @endslot
+                            @endcomponent
                         </li>
                     </ul>
                 </div>
@@ -375,6 +377,7 @@
             success: function(data){
               if(data == 1){
                 alert("l'enregistrement s'est passe avec success ");
+                $("input[name='name_modification']").val('');
               }else if(data == 2){
                 alert("Désolé il y'a aucune modification, veillez modifier avant d'enregistrer une modification");
               }

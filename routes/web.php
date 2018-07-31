@@ -73,7 +73,10 @@ Route::prefix('bayeurs')->group(function () {
 
 			Route::get('/projects/{ong_id}', 'OngController@getListProjects');
 
-			Route::get('projects', 'ProjectController@index')->name('projects.index');
+			//Route::get('amendement/add', '');
+
+			//Route::get('projects', 'ProjectController@index')->name('projects.index');
+			Route::get('projects', 'ProjectController@index');
 			Route::get('/projects-details/{short_code}', 'BayeurController@getDetail');
 				Route::get('project-follow/{short_code}', 'Bayeur\ProjectController@show');		
 				Route::get('project-context/{short_code}', 'Bayeur\ContextController@show');
@@ -103,8 +106,7 @@ Route::prefix('bayeurs')->group(function () {
 				//Route::post('projects/execution/{short_code}', 'ExecutionController@store');
 				Route::post('projects/save-modification/{short_code}', 'ProjectController@saveHistorisation');
 				Route::get('project-hypothese/{short_code}', 'Bayeur\HypotheseController@show')->name('projects.hypothese');
-				//Route::post('projechypothese/{short_code}', 'HypotheseController@store')->name('projects.hypothese');
-			
+				//Route::post('projechypothese/{short_code}', 'HypotheseController@store')->name('projects.hypothese');			
 		});
 		Route::prefix('projects')->group(function() {
 			Route::get('/', 'Bayeur\ProjectController@index');
@@ -116,7 +118,16 @@ Route::prefix('bayeurs')->group(function () {
 				});
 			});
 			Route::get('historisations-versions/{projectHistorisationId}', 'Bayeur\ProjectHistorisationController@showVersion');
-			//Route::get('historisation-context/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\ContextController');
+			Route::get('historisation-context/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\ContextController@show');
+			Route::get('historisation-justificatif/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\JustificatifController@show');
+			Route::get('historisation-objectifs/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\ObjectifController@show');
+			Route::get('historisation-cible/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\CibleController@show');
+			Route::get('historisation-resultats/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\ResultatController@show');
+			Route::get('historisation-composante/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\ComposanteController@show');
+			Route::get('historisation-methodologie/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\MethodologieController@show');
+			Route::get('historisation-cadre-logique/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\CadreLogiqueController@show');
+			Route::get('historisation-execution/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\ExecutionController@show');
+			Route::get('historisation-hypothese/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\HypotheseController@show');
 		});
 	});
 
@@ -131,4 +142,24 @@ Route::prefix('ongs')->group(function() {
 
 	Route::get('/login', 'Ong\AuthOng\LoginOngController@showLoginForm')->name('getOngLogin');
 	Route::post('/login', 'Ong\AuthOng\LoginOngController@login')->name('postOngLogin');
+	Route::post('/logout', 'Ong\AuthOng\LoginOngController@logout');
+});
+
+Route::get('test', function(){
+	//$historisations = App\ProjectHistorisation::all();
+	$contexts = App\Context::all();
+	//dd($historisations[1]->context);
+	dd($contexts);
+});
+
+Route::prefix('teachers')->group(function(){
+	Route::group(['middleware' => ['authTeacher']], function(){
+		Route::get('/', function(){
+			dd("nous sommes dans l'espace teacher");
+		});
+	});
+
+	Route::get('login', function(){
+		dd("nous sommes dans l'espace de connection de teacher");
+	});
 });

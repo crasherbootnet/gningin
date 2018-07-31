@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ong extends Model
 {
+    //use Notifiable;
+
     public $table = "ongs";
     public $fillable = ["user_id", "bayeur_id"];
 

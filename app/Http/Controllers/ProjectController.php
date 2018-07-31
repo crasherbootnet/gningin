@@ -58,7 +58,7 @@ class ProjectController extends Controller
                         'date_debut' => $request->date_debut,
                         'date_fin' => $request->date_debut,
                         'type_project_id' => $request->type_projet,
-                        'short_code' => strtolower(substr($request->libelle,0,strlen($request->libelle)/2))
+                        'short_code' => $this->slugify($request->libelle)
                     ];
             $project = Project::create($data);
 
@@ -161,7 +161,7 @@ class ProjectController extends Controller
     {
         // recuperation des informations du project
         $project = Project::where('short_code', $short_code)->first(); 
-
+        
         // on vérifie si nous avons une modification 
         if(!$project->isModification())
         {
@@ -169,5 +169,43 @@ class ProjectController extends Controller
         }
 
         return 1;
+    }
+
+    
+    /*public function formatShortCode($libelle){
+        $short_code = strtolower(substr($request->libelle,0,strlen($request->libelle)/2));
+        return $short_code;
+    }*/
+
+    /**
+     * Retourne le short_code du project
+     * @param String $libelle
+     * @return string
+     */
+    public static function slugify($text)
+    {
+    // replace non letter or digits by -
+    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+    // transliterate
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    // trim
+    $text = trim($text, '-');
+
+    // remove duplicate -
+    $text = preg_replace('~-+~', '-', $text);
+
+    // lowercase
+    $text = strtolower($text);
+
+    if (empty($text)) {
+        return 'n-a';
+    }
+
+    return $text;
     }
 }

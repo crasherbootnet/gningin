@@ -298,6 +298,14 @@
 					</div>
 				</div>
 
+				<div class="group" style="margin-left:10px;margin-top: 10px">
+					<div class="row">
+						<div class="col-md-2">
+							<a href="{{ url('bayeurs/ong/amendement/add/'.$project->shorte_code)}}" class="btn btn-primary">add amendement</a>
+						</div>
+					</div>
+				</div>
+
 				<!--
 				<div class="group" style="margin-left:10px;margin-top:30px">
 					<div class="panel-heading header" style="font-size: 16px;">

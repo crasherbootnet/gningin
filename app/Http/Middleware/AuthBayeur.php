@@ -17,7 +17,8 @@ class AuthBayeur
     public function handle($request, Closure $next, ...$guards)
     {
         if(!$this->isBayeur()){
-            return redirect('/bayeurs/login');
+            //return redirect('/bayeurs/login');
+            return redirect()->intended('/bayeurs/login');
         }
 
         return $next($request);
@@ -48,5 +49,10 @@ class AuthBayeur
             return true;
         }
         return false;
+    }
+
+    protected function guard()
+    {
+        return $this->auth->guard('bayeur');
     }
 }

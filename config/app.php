@@ -160,6 +160,13 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        /**
+         * 
+         * @author David kouame
+         */
+        App\Providers\ProviderProject::class,
+        App\Providers\ProviderProjectHistorisation::class,
+
     ],
 
     /*

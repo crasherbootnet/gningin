@@ -97,14 +97,18 @@ class ContextController extends Controller
     {
         // update or create context for this project
         //dd(Context::where('project_id', $project->id)->orderBy('created_at', 'DESC')->first()->update(['project_id' => $project->id]));
-            if($project->context){
-                Context::where('project_id', $project->id)->orderBy('created_at', 'DESC')->first()
-                        ->update(['content' => $request->content]);
-            }else{
-                Context::create([
-                                    'project_id' => $project->id, 
-                                    'content' => $request->content
-                                ]);
-            }
+        if($project->context){
+            Context::where('project_id', $project->id)->orderBy('created_at', 'DESC')->first()
+                    ->update(['content' => $request->content]);
+        }else{
+            Context::create([
+                                'project_id' => $project->id, 
+                                'content' => $request->content
+                            ]);
+        }
+
+        // on change le status de project on le passant en mode modification
+        $project->is_modification = 1;
+        $project->save();
     }
 }

@@ -138,9 +138,9 @@
                     </a>
                 </li>
                 <li>
-                    <a href="">
+                    <a href="{{ url('/bayeurs/projects/amendements/'.$project->short_code) }}">
                         <i class="pe-7s-user"></i>
-                        <p>params</p>
+                        <p>Amendements</p>
                     </a>
                 </li>
             </ul>
@@ -210,15 +210,16 @@
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something</a></li>
                                 <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something</a></li>
                                 <li class="divider"></li>
                                 <li><a href="#">Separated link</a></li>
                               </ul>
                         </li>
                         <li>
-                            <a href="#">
-                                Log out
-                            </a>
+                            @component('components.logout') 
+                              @slot('space') 
+                                bayeurs  
+                              @endslot
+                            @endcomponent
                         </li>
                     </ul>
                 </div>

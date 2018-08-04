@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
 use App\Project;
+use App\Amendement;
 
 class ProjectController extends Controller
 {
@@ -97,5 +98,37 @@ class ProjectController extends Controller
         }
 
         return $projects;
+    }
+
+    public function getAmendement($short_code){
+
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+        
+        return view('bayeurs.projects.amendements', ['project' => $project]);
+    }
+
+    public function postAmendement(Request $request, $short_code)
+    {
+        try{
+            // recuperation du project
+            $project = Project::where('short_code', $short_code)->first();
+
+            // create un amendement
+            $amendement = Amendement::create([
+                'project_historisation_id' => $project->projectHistorisation()->id,
+                'content' => $request->content
+            ]);
+            
+            // on change l'etat du projet
+            if($amendement){
+                $project->etat_project_id = 1;
+                $project->save();
+            }
+            
+        }catch(Exception $e){
+            // trait exception
+        }
+        return redirect('bayeurs/ong/project-follow/'.$project->short_code);
     }
 }

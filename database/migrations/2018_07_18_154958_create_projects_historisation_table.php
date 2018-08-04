@@ -18,6 +18,7 @@ class CreateProjectsHistorisationTable extends Migration
             $table->integer('project_id');
             $table->datetime('date_envoi')->nullable();
             $table->string('libelle');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\AuthBayeur;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use Auth;
 class LoginBayeurController extends Controller
 {
     /*
@@ -43,5 +44,10 @@ class LoginBayeurController extends Controller
 
     public function showLoginForm(){
         return view('bayeurs.auth.login');
+    }
+
+    public function logout(Request $request){
+        Auth::logout();
+        return redirect('/bayeurs/login');
     }
 }

@@ -50,6 +50,26 @@ Route::group(['middleware' => ['authOng']], function(){
 	Route::post('projects/execution/{short_code}', 'ExecutionController@store')->name('projects.execution');
 	Route::post('projects/save-modification/{short_code}', 'ProjectController@saveHistorisation');
 	Route::get('projects/is-modification/{short_code}', 'ProjectController@isModification');
+	Route::get('projects/isCreatedModification/{short_code}', 'ProjectController@isCreatedModification');
+	Route::get('projects/isProjectHistorisation/{short_code}', 'ProjectController@isProjectHistorisation');
+
+	Route::get('projects/historisations/{short_code}', 'ProjectHistorisationController@index');
+	Route::prefix('projects')->group(function(){
+		Route::get('historisations-versions/{projecthistorisation_id}', 'ProjectHistorisationController@showVersion');
+		Route::get('historisation-context/{projecthistorisation_id}', 'ProjectHistorisationController@showContext');
+		Route::get('historisation-justificatif/{projecthistorisation_id}', 'ProjectHistorisationController@showJustificatif');
+		Route::get('historisation-objectifs/{projecthistorisation_id}', 'ProjectHistorisationController@showObjectif');
+		Route::get('historisation-cible/{projecthistorisation_id}', 'ProjectHistorisationController@showCible');
+		Route::get('historisation-resultats/{projecthistorisation_id}', 'ProjectHistorisationController@showResultats');
+		Route::get('historisation-composante/{projecthistorisation_id}', 'ProjectHistorisationController@showComposante');
+		Route::get('historisation-methodologie/{projecthistorisation_id}', 'ProjectHistorisationController@showMethodologie');
+		Route::get('historisation-activites/{projecthistorisation_id}', 'ProjectHistorisationController@showActivites');
+		Route::get('historisation-activites/activite/{activite_id}', 'ProjectHistorisationController@showActivite');
+		Route::get('historisation-cadre-logique/{projecthistorisation_id}', 'ProjectHistorisationController@showCadreLogique');
+		Route::get('historisation-hypothese/{projecthistorisation_id}', 'ProjectHistorisationController@showHypothese');
+		Route::get('historisation-execution/{projecthistorisation_id}', 'ProjectHistorisationController@showExecution');
+		Route::get('historisation-amendements/{projecthistorisation_id}', 'ProjectHistorisationController@showAmendements');
+	});
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -108,10 +128,13 @@ Route::prefix('bayeurs')->group(function () {
 				Route::get('project-hypothese/{short_code}', 'Bayeur\HypotheseController@show')->name('projects.hypothese');
 				//Route::post('projechypothese/{short_code}', 'HypotheseController@store')->name('projects.hypothese');			
 		});
+
+		Route::get('project-follow/{short_code}/amememdement', 'Bayeur\ProjectController@getAmemdement');
+
 		Route::prefix('projects')->group(function() {
 			Route::get('/', 'Bayeur\ProjectController@index');
 			Route::get('/create', 'Bayeur\ProjectController@create');
-			Route::post('/store', 'Bayeur\ProjectController@store');
+			Route::post('/store', 'Bayeur\ProjectController@store');	
 			Route::prefix('historisations')->group(function (){
 				Route::prefix('{short_code}')->group(function (){
 					Route::get('/', 'Bayeur\ProjectHistorisationController@index');
@@ -129,10 +152,14 @@ Route::prefix('bayeurs')->group(function () {
 			Route::get('historisation-execution/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\ExecutionController@show');
 			Route::get('historisation-hypothese/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\HypotheseController@show');
 		});
+
+		Route::get('projects/amendements/{short_code}', 'Bayeur\ProjectController@getAmendement');
+		Route::post('projects/amendements/{short_code}', 'Bayeur\ProjectController@postAmendement');
 	});
 
 	Route::get('/login', 'AuthBayeur\LoginBayeurController@showLoginForm')->name('getBayeurLogin');
 	Route::post('/login', 'AuthBayeur\LoginBayeurController@login')->name('postBayeurLogin');
+	Route::post('/logout', 'AuthBayeur\LoginBayeurController@logout');
 });
 
 Route::prefix('ongs')->group(function() {

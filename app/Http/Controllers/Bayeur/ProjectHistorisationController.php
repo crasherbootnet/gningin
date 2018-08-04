@@ -17,7 +17,7 @@ class ProjectHistorisationController extends Controller
 
     	$data = ['projectHistorisation' => $project->projectHistorisation(), "projectshistorisations" => $project->getAllProjectsHistorisations($project) ]; 
     	return view('bayeurs.projectshistorisations.index', $data);
-    }
+	}
 
     public function showVersion($projectHistorisationId)
     {

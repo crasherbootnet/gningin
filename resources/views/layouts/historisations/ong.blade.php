@@ -143,7 +143,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                            <a href="{{ url('bayeurs/ong/project-follow/'.$projectHistorisation->project->short_code)}}">Retour</a>
+                            <a href="{{ url('projects/historisations/project-follow/'.$projectHistorisation->project->short_code)}}">Retour</a>
                         </li>
                     </ul>
 

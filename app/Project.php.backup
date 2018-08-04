@@ -19,7 +19,7 @@ use App\Activite;
 class Project extends Model
 {
     protected $table      = 'projects';
-	protected $fillable   = ["is_modification","ong_id", "libelle","date_debut","date_fin","short_code", "type_project_id", "etat_project_id"];
+	protected $fillable   = ["is_modification","ong_id", "libelle","date_debut","date_fin","short_code", "type_project_id"];
 
 	public function context(){
 		return $this->hasOne('App\Context')->whereNull('project_historisation_id');
@@ -88,10 +88,6 @@ class Project extends Model
 
     public function etatProject(){
     	return $this->belongsTo('App\EtatProject');
-	}
-	
-	public function statutProject(){
-    	return $this->belongsTo('App\StatutProject');
     }
 
     public function projectsHistorisations(){
@@ -138,7 +134,7 @@ class Project extends Model
 		$months = [];
 		//dd($project->projectshistorisations);
 		//dd($project->projectshistorisations->slice(1, count($project->projectshistorisations)-1));
-		// recuperation des mois		
+    	// recuperation des mois
     	foreach ($project->projectshistorisations as $projectHistorisation) {
     		if(!in_array($projectHistorisation->created_at->month, $months))
     		{
@@ -154,9 +150,9 @@ class Project extends Model
 			//dd($project->projectshistorisations->slice(count($project->projectshistorisations)-1));
     		// recuperations des projects historisations sans le premier 
     		//foreach ($project->projectshistorisations->slice(count($project->projectshistorisations)-1) as $projectHistorisation) {
-			//foreach($project->projectshistorisations->slice(1, count($project->projectshistorisations)-1) as $projectHistorisation)
-			foreach($project->projectshistorisations as $projectHistorisation)
+			foreach($project->projectshistorisations->slice(1, count($project->projectshistorisations)-1) as $projectHistorisation)
 			{
+    			$projectHistorisation = (object) $projectHistorisation;
 	    		if($projectHistorisation->created_at->month == $month){
 	    			$months_projectsHistorisations[] = $projectHistorisation;
 	    		}
@@ -168,7 +164,7 @@ class Project extends Model
 	    							];
 
     	}
-		
+
     	return $projectshistorisations;
 	}
 	

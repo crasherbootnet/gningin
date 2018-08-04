@@ -9,143 +9,54 @@ class ProjectHistorisation extends Model
 	public $table = "projects_historisation";
 	//public $primaryKey = "id";
 	public $incrementing = False;
-	public $fillable = ["id","project_id","libelle","date_envoi"];
+	public $fillable = ["id","project_id","libelle","description","date_envoi"];
 
 	public function project(){
 		return $this->belongsTo('App\Project');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si le context de 'historisation sélectionné retourne null alors on retourne le context actuelle
-	*/
 	public function context(){
-		$query = $this->hasOne('App\Context', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->context();	
-		}
-		return $query;
+		return $this->hasOne('App\Context');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si le justificatif de 'historisation sélectionné retourne null alors on retourne le justificatif actuelle
-	*/
 	public function justificatif(){
-		$query = $this->hasOne('App\Justificatif', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->justificatif();	
-		}
-		return $query;
+		return $this->hasOne('App\Justificatif');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si le justificatif de 'historisation sélectionné retourne null alors on retourne le justificatif actuelle
-	*/
 	public function objectif(){
-		$query = $this->hasOne('App\Objectif', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->objectif();	
-		}
-		return $query;
+		return $this->hasOne('App\Objectif');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si le justificatif de 'historisation sélectionné retourne null alors on retourne le justificatif actuelle
-	*/
 	public function cible(){
-		$query = $this->hasOne('App\Cible', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->cible();	
-		}
-		return $query;
+		return $this->hasOne('App\Cible');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si le resultat de 'historisation sélectionné retourne null alors on retourne le context resultat
-	*/
 	public function resultats(){
-		$query = $this->hasMany('App\Resultat', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->resultats();	
-		}
-		return $query;
+		return $this->hasMany('App\Resultat');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si le composante de 'historisation sélectionné retourne null alors on retourne le composante actuelle
-	*/
 	public function composante(){
-		$query = $this->hasOne('App\Composante', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->composante();	
-		}
-		return $query;
+		return $this->hasOne('App\Composante');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si la methodologie de 'historisation sélectionné retourne null alors on retourne la methodologie actuelle
-	*/
 	public function methodologie(){
-		//return $this->hasOne('App\Methodologie');
-		$query = $this->hasOne('App\Methodologie', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->methodologie();	
-		}
-		return $query;
+		return $this->hasOne('App\Methodologie');
 	}
-
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si l'hypothese de 'historisation sélectionné retourne null alors on retourne l'hypothese actuelle
-	*/
+	
 	public function hypothese(){
-		//return $this->hasOne('App\Hypothese');
-		$query = $this->hasOne('App\Hypothese', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->hypothese();	
-		}
-		return $query;
+		return $this->hasOne('App\Hypothese');
 	}
 
 	public function activites(){
-		//return $this->hasMany('App\Activite');
-		$query = $this->hasMany('App\Activite', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->activites();	
-		}
-		return $query;
+		return $this->hasMany('App\Activite');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si le cadreLogique de 'historisation sélectionné retourne null alors on retourne le cadreLogique actuelle
-	*/
 	public function cadreLogique(){
-		//return $this->hasOne('App\CadreLogique');
-		$query = $this->hasOne('App\CadreLogique', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->cadreLogique();	
-		}
-		return $query;
+		return $this->hasOne('App\CadreLogique');
 	}
 
-	/* 
-	*  Retourne le context de l'historisation.
-	*  Si l' execution de 'historisation sélectionné retourne null alors on retourne l'execution actuelle
-	*/
 	public function execution(){
-		//return $this->hasOne('App\Execution');
-		$query = $this->hasOne('App\Execution', 'project_historisation_id', 'id');
-		if(count($query->get()) <= 0){
-			return $this->project->execution();	
-		}
-		return $query;
+		return $this->hasOne('App\Execution');
 	}
 
 	/*public function bayeur(){
@@ -158,6 +69,10 @@ class ProjectHistorisation extends Model
 
 	public function projectsCategories(){
     	return $this->hasMany('App\ProjectCategorie');
+	}
+
+	public function amendement(){
+		return $this->hasOne('App\Amendement');
 	}
 	
 

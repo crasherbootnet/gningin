@@ -202,7 +202,7 @@
                                 <li><a href="#">Action</a></li>
                                 <li><a href="#">Another action</a></li>
                                 <li><a href="#">Something</a></li>
-                                <li><a href="#">Another action</a></li>
+                                <li><a href="{{ url('projects/historisations/'.$project->short_code) }}" id="list-modification">List de modification</a></li>
                                 <li><a href="{{ url('projects') }}">Change project</a></li>
                                 <li class="divider"></li>
                                 <li><a href="javascript:void(0)" id="completeSave">Enregistrement</a></li>
@@ -325,7 +325,14 @@
         <h4 class="modal-title">Saisir le nom de la modification ?</h4>
       </div>
           <div class="modal-body">
-            <input type="text" class="form-control" name="name_modification">
+            <div class="row">
+              <div class="col-md-12">
+                <input type="text" class="form-control" name="name_modification" placeholder="Entrer le libelle de la modification">
+              </div>
+              <div class="col-md-12">
+                <textarea name="description" id="" cols="30" rows="10" class="form-control" placeholder="Entrer la description de la modification"></textarea>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Annulez</button>
@@ -350,17 +357,18 @@
     <script>
       $(document).ready(function() {
         $("#completeSave").click(function(){
-
           // on vérifie si nous avons une modification 
           $.ajax({
-            url: "{{ url('projects/is-modification/'.$project->short_code) }}",
+            url: "{{ url('projects/isCreatedModification/'.$project->short_code) }}",
             type: "get",
             success: function(data){
               if(data == 1)
               {
                 $("#modalCompleteSave").modal();
-              }else{
+              }else if(data == 0){
                 alert("Désolé il y'a aucune modification, veillez apporter une modification avant d'enregistrer une modification");
+              }else if(data == 4){
+                alert("Désolé vous ne pouvez pas créer une modification, car vous etes en attente d'un retour de la part du ptf");
               }
             }
           });
@@ -373,7 +381,7 @@
           $.ajax({
             url: "{{ url('projects/save-modification/'.$project->short_code)}}",
             type: 'POST',
-            data: {'_token' : $("input[name='_token']").val(), 'name' : $("input[name='name_modification']").val()},
+            data: {'_token' : $("input[name='_token']").val(), 'name' : $("input[name='name_modification']").val(), 'description': $("textarea[name='description']").val()},
             success: function(data){
               if(data == 1){
                 alert("l'enregistrement s'est passe avec success ");
@@ -387,6 +395,23 @@
           // close modal
           $("#modalCompleteSave").modal('toggle');
         })
+
+        $("#list-modification").click(function(e){
+          var element = $(this);
+          e.preventDefault();
+
+          $.ajax({
+            url: "{{ url('projects/isProjectHistorisation/'.$project->short_code)}}",
+            type: 'GET',
+            success: function(data){
+              if(data != 0){
+                window.location = element.attr("href");
+              }else{
+                alert("Désolé, il n'y a aucune historisation");
+              }
+            }
+          });
+        });
       });
     </script>
 </html>

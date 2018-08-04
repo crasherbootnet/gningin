@@ -9,6 +9,7 @@ use App\Project;
 use App\Categorie;
 use App\ProjectCategorie;
 use App\ProjectHistorisation;
+use App\EtatProject;
 
 class ProjectController extends Controller
 {
@@ -130,24 +131,35 @@ class ProjectController extends Controller
     {
         try {
             // recuperation des informations du project
-            $project = Project::where('short_code', $short_code)->first(); 
+           $project = Project::where('short_code', $short_code)->first(); 
 
             // on vérifie si nous avons une modification 
             if(!$project->isModification())
             {
                 return 2;
             }
-
+            
             // historisation du project
-            ProjectHistorisation::create([
+            $projecthistorisation = ProjectHistorisation::create([
                                             'id' => uniqid(), 
                                             'project_id' => $project->id,
                                             'libelle' =>$request->name,
+                                            'description' =>$request->description,
                                             "date_envoi" => date("Y-m-d H:i:s")
                                         ]);
-            return 1;
-        } catch (Exception $e) {
+
+        
+            // on change l'etat du project
+            if($projecthistorisation)
+            {
+                $project->etat_project_id = 4;
+                $project->save();
+            }
             
+            $project->makeHistorisation($projecthistorisation);
+             /*return 1;*/
+        } catch (Exception $e) {
+            return False;
         }
 
         return 0;
@@ -169,6 +181,36 @@ class ProjectController extends Controller
         }
 
         return 1;
+    }
+
+    public function isCreatedModification($short_code)
+    {
+        // recuperation des informations du project
+        $project = Project::where('short_code', $short_code)->first();
+        $response = 1;
+
+        // on vérifie si nous avons la possiblité de créer une modification
+        if($project->etat_project_id != 1)
+        {
+            switch($project->etat_project_id)
+            {
+                case 3:
+                    $response = 3;
+                    break;
+                case 4:
+                    $response = 4;
+            }
+
+            return $response;
+        }
+
+        // on vérifie si nous avons une modification 
+        if(!$project->isModification())
+        {
+            return 0;
+        }
+
+        return $response;
     }
 
     
@@ -207,5 +249,16 @@ class ProjectController extends Controller
     }
 
     return $text;
+    }
+
+    public function isProjectHistorisation($short_code)
+    {
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+
+        if(count($project->getAllProjectsHistorisations()) >= 1){
+            return 1;
+        }
+        return 0;
     }
 }

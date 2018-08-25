@@ -9,6 +9,10 @@ use App\Http\Controllers\Controller;
 
 use App\Project;
 use App\Amendement;
+use DB;
+use Mail;
+use App\VerouilleProject;
+use App\EtatProject;
 
 class ProjectController extends Controller
 {
@@ -79,7 +83,7 @@ class ProjectController extends Controller
         // on vérifie si le project a une historisation
         if(count($project->projectsHistorisations) == 0)
         {   
-            return view('bayeurs.nothing');
+            return view('bayeurs.nothing', ['project' => $project]);
         }
 
         return view('bayeurs.projects.show', ['project' => $project]);
@@ -104,12 +108,16 @@ class ProjectController extends Controller
 
         // recuperation du project
         $project = Project::where('short_code', $short_code)->first();
+
+        //dd($project->projectHistorisation()->amendement);
+        //dd(($project->verouilleProject && $project->verouilleProject->dateverouille && !$project->verouilleProject->datedeverouille) || (!$project->verouilleproject && $project->projectHistorisation()->amendement));
         
         return view('bayeurs.projects.amendements', ['project' => $project]);
     }
 
     public function postAmendement(Request $request, $short_code)
     {
+        DB::beginTransaction();
         try{
             // recuperation du project
             $project = Project::where('short_code', $short_code)->first();
@@ -125,10 +133,133 @@ class ProjectController extends Controller
                 $project->etat_project_id = 1;
                 $project->save();
             }
+
+            // envoi de mail a l'ong
+            /*Mail::send('emails.email', ['title' => "ddd", 'content' => "dss"], function ($message) use($project)
+            {
+
+                $message->from($project->ong->bayeur->user->email, 'Christian Nwamba');
+                $message->to($project->ong->user->email);
+                $message->subject('Bonjour, vous avez recu un rapport de la part de votre bayeur '.$project->ong->bayeur->user->name);
+
+            });*/
+
+            DB::commit();
             
         }catch(Exception $e){
             // trait exception
+            DB::rollBack();
         }
         return redirect('bayeurs/ong/project-follow/'.$project->short_code);
+    }
+
+    public function getParams($short_code){
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+        
+        return view('bayeurs.projects.params', ['project' => $project]);
+    }
+
+    public function verouilleProject(Request $request)
+    {
+        try {
+            // recuperation du project
+            $project = Project::where('short_code', $request->short_code)->first();
+
+            if(!$project->verouilleProject || ($project->verouilleProject && ($project->verouilleProject->dateverouille && $project->verouilleProject->datedeverouille))){
+                // verouille project
+                VerouilleProject::create([
+                                        'project_id' => $project->id,
+                                        'dateverouille' => now(),
+                                        'motifverouille' => 'lol'
+                                    ]);
+
+                // on change l'etat du project
+                // $project->etat_project_id = 5;
+                // $project->save();
+            }else{
+                // on deverouille le project
+                $verouilleproject = $project->verouilleProject;
+                $verouilleproject->datedeverouille = now();
+                $verouilleproject->motifdeverouille = 'lol';
+                $verouilleproject->save();
+
+                // on change l'etat du project
+                // $project->etat_project_id = 6;
+                // $project->save();
+            }
+
+            return 1;
+        } catch (Exception $e) {
+            
+        }
+
+        return 0;
+    }
+
+    public function getClosedProject($short_code)
+    {
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+        
+        return view('bayeurs.projects.closed', ['project' => $project]);
+    }
+
+    public function postClosedProject(Request $request, $short_code)
+    {
+        
+        try {
+            // recuperation du project
+            $project = Project::where('short_code', $request->short_code)->first();
+
+            if($project->short_code == $short_code){
+                // on ferme le project
+                // $project->etat_project_id = 7;
+                // $project->save();
+                $project->statut_project_id = 1;
+                $project->dateclosed = now();
+                $project->content_closed_project = $request->content;
+                $project->save();
+            }
+
+            return 1;
+        } catch (Exception $e) {
+            // trait exception            
+        }
+
+        return 0;
+    }
+
+    public function getFinancedProject($short_code)
+    {
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+        
+        return view('bayeurs.projects.financed', ['project' => $project]);
+    }
+
+    public function postFinancedProject(Request $request, $short_code)
+    {
+        
+        try {
+            // recuperation du project
+            $project = Project::where('short_code', $request->short_code)->first();
+
+            if($project->short_code == $short_code){
+                // on ferme le project
+                // $project->etat_project_id = 7;
+                // $project->save();
+                $project->statut_project_id = 2;
+                $project->datefinance = now();
+                $project->content_finance_project = $request->content;
+                $project->save();
+            }
+
+            return 1;
+        } catch (Exception $e) {
+            // trait exception            
+        }
+
+        return 0;
     }
 }

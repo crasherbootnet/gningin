@@ -20,6 +20,7 @@ class CreateActivitesTable extends Migration
             $table->string('libelle');
             $table->string('short_code', 100);
             $table->text('content');
+            $table->float('budget')->nullable();
             $table->text('rapport_moral')->nullable();
             $table->text('rapport_financier')->nullable();
             $table->integer('liste_presence')->nullable();

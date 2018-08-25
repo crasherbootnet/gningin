@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Hypothese extends Model
+class Hypothese extends DksModel
 {
     public $table = "hypotheses";
+    protected $name = "Hypothese";
     public $fillable = ["project_id", "content", "project_historisation_id"];
 
     public function project(){

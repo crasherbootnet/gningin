@@ -11,12 +11,6 @@ use App\ProjectHistorisation;
 class ResultatsController extends Controller
 {
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  string $short_code
-     * @return \Illuminate\Http\Response
-     */
     public function show($short_code)
     {
         // recuperation des resultats du project
@@ -26,86 +20,95 @@ class ResultatsController extends Controller
         return view('projects.resultats', ['resultats' => $resultats, 'project' => $project]);
     }
 
-    public function store(Request $request, $short_code = null){
+    /*public function store(Request $request, $short_code = null){
 
-    	// recuperation du project
-    	$project = Project::where('short_code', $short_code)->first();
-
-		if($project->resultat)
-        {
-            
-            if($this->haveYouHistorisation($project))
-            {
-                // nous historisons le resultat
-                $this->makeHistorisation($short_code);
-            }
-
-            $this->createOrUpdate($project, $request);          
-        }else{
-            $this->createOrUpdate($project, $request);
-		}
-		
-		
-		// on change le status de project on le passant en mode modification
-        $project->is_modification = 1;
-        $project->save();
-
-    	return redirect('projects/show/'.$short_code);
-	}
-	
-	public function haveYouHistorisation(Project $project){
-        try {
-            // recuperation de l'historisation 
-            $projectHistorisation = ProjectHistorisation::where('project_id', $project->id)->get()->reverse()->first();
-
-            if($projectHistorisation && !Resultat::where('project_historisation_id', $projectHistorisation->id)->first()){
-                return True;
-            }
-        } catch (Exception $e) {
-            // trait exception
-        }
-
-        return False;
-	}
-	
-	public function makeHistorisation($short_code)
-    {
-
-        // recuperation du project 
+        // recuperation du project
         $project = Project::where('short_code', $short_code)->first();
 
-        // recuperation du dernier project de l'historisation 
-        $projectHistorisation = ProjectHistorisation::where('project_id', $project->id)->orderBy('created_at', 'DESC')->first();
-        
-        // recuperation du resultat et creation d'un nouveau resultat
-        $resultat = $project->resultat;
-        Resultat::create($resultat->toArray());
+        // recuperation du context
+        $resultats = $project->resultats;
 
-        // ajout de la cle de l'historisation a l'ancien resultat
-        $resultat->project_historisation_id = $projectHistorisation->id;
-        $resultat->save();
+        // json decode
+        $datas = json_decode($request->resultats);
+        dd(in_array(12, $datas));
 
-        return $resultat;
-	}
-	
-	public function createOrUpdate(Project $project, $request)
-    {
-        // update or create resultats for this project
-        $resultats = json_decode($request->resultats);
-        if($resultats){
-            // suppression de tous les resultats du project 
-            Resultat::where('project_id', $project->id)->delete();
+        if($resultats)
+        {
+            // suppression des resultats 
             foreach ($resultats as $resultat) {
+                $resultat->delete();
+            }
+        }else{
+            foreach ($datas as $data) {
                 Resultat::create([
                                     'project_id' => $project->id,
-                                    'libelle'   => $resultat->libelle,
-                                    'content'   => $resultat->content
-                ]);
+                                    'libelle' => $data->libelle,
+                                    'content' => $data->content
+                                ]);
             }
         }
 
-        // on change le status de project on le passant en mode modification
-        $project->is_modification = 1;
-        $project->save();
+        return redirect('projects/show/'.$short_code);
+    }*/
+
+    public function store(Request $request, $short_code = null){
+
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+
+        // recuperation des resultats
+        $resultats = $project->resultats;
+
+        // json decode
+        $datas = json_decode($request->resultats);
+
+        if($resultats)
+        {
+            foreach ($datas as $data) {
+                // on fait un update des resulats
+                if(!Resultat::where('libelle', $data->libelle)->first())
+                {
+                    Resultat::create([
+                                        'project_id' => $project->id,
+                                        'libelle'    => $data->libelle,
+                                        'content'    => $data->content
+                                    ]);
+                }
+
+                // on change le status de project on le passant en mode modification
+                $project->is_modification = 1;
+                $project->save();
+            }
+
+            // on supprime les resultats qui ne sont plus dans la liste
+            foreach ($resultats as $resultat) {
+                $verifyForDeleted = True;
+                foreach ($datas as $data) {
+                    if($data->libelle === $resultat->libelle)
+                    {
+                        $verifyForDeleted = False;
+                    }
+                }
+
+                if($verifyForDeleted){
+                    $resultat->delete();
+                }
+
+                // on change le status de project on le passant en mode modification
+                $project->is_modification = 1;
+                $project->save();
+            }
+            
+        }else{
+            foreach ($datas as $data) {
+                Resultat::create([
+                                    'project_id' => $project->id,
+                                    'libelle'    => $data->libelle,
+                                    'content'    => $data->content
+                                ]);
+            }
+        }
+
+        return redirect('projects/show/'.$short_code);
     }
 }

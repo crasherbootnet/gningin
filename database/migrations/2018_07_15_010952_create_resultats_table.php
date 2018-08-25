@@ -17,7 +17,7 @@ class CreateResultatsTable extends Migration
             $table->increments('id');
             $table->integer('project_id');
             $table->string('project_historisation_id')->nullable();
-            $table->string('libelle');
+            $table->string('libelle')->unique();
             $table->text('content');
             $table->timestamps();
         });

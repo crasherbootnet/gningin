@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use App\StatutProject;
+
 class StatutProjectTableSeeder extends Seeder
 {
     /**
@@ -11,6 +13,7 @@ class StatutProjectTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        StatutProject::create(['libelle' => "fermé"]);
+        StatutProject::create(['libelle' => "financé"]);
     }
 }

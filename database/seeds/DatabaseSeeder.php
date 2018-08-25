@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
                         ProjectTableSeeder::class,
                         CategorieTaleSeeder::class,
                         EtatProjectTableSeeder::class,
+                        StatutProjectTableSeeder::class,
         ]);
     }
 }

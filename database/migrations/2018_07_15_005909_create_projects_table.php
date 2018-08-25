@@ -19,9 +19,14 @@ class CreateProjectsTable extends Migration
             $table->integer('ong_id');
             $table->integer('type_project_id');
             $table->integer('etat_project_id')->default(1);
+            $table->integer('statut_project_id')->nullable();
             $table->integer('is_modification')->default(0);
-            $table->string('libelle');
-            $table->string('short_code');
+            $table->string('libelle')->unique();
+            $table->text('content_closed_project')->nullable();
+            $table->dateTime('dateclosed')->nullable();
+            $table->text('content_finance_project')->nullable();
+            $table->dateTime('datefinance')->nullable();
+            $table->string('short_code')->unique();
             $table->integer('active')->nullable();
             $table->dateTime('date_debut');
             $table->dateTime('date_fin');

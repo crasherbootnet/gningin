@@ -17,12 +17,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        /*if (Auth::guard($guard)->check()) {
+        if (Auth::guard($guard)->check()) {
 
             // recuperation de l'utilisateur
             $user = Auth::user();
-
-            dd($guard);
 
             if($user->is_bayeur == 1){
                 return redirect('/bayeurs');
@@ -31,9 +29,7 @@ class RedirectIfAuthenticated
             if($user->is_ong == 1){
                 return redirect('/ongs');
             }
-            
-            return redirect($user->getRedirectPath());
-        }*/
+        }
 
         return $next($request);
     }

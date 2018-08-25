@@ -5,6 +5,11 @@
 @section('content')
 	<div class="content">
         <div class="container-fluid">
+          @if($project->isLock() || (!$project->isLock() && $project->projectHistorisation()->amendement)) 
+          <div class="row">
+            <span style="color: red">Warning !!! le project est verouillé </span>
+          </div>
+          @endif
             <div class="row">
 				<form action="{{ url('bayeurs/projects/amendements/'.$project->short_code) }}" method="POST">
 					<input type="text" name="_token" value="{{ csrf_token() }}" hidden>
@@ -28,7 +33,7 @@
                 selector:"textarea.tinymce",
               height: 500,
               theme: 'modern',
-			  readonly: @if($project->projectHistorisation()->amendement) 1 @else 0 @endif,
+			        readonly: @if($project->isLock() || (!$project->isLock() && $project->projectHistorisation()->amendement)) 1 @else 0 @endif,
               plugins: [
                 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
                 'searchreplace wordcount visualblocks visualchars code fullscreen',

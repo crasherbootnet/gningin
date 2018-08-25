@@ -95,7 +95,7 @@
 
     <!-- TINYMCE -->
     <script type="text/javascript" src="{{ asset('plugin/tinymce/tinymce.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('plugin/tinymce/init-tinymce.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ asset('plugin/tinymce/init-tinymce.js') }}"></script> -->
 
     <!-- FILESTYLE -->
     <script type="text/javascript" src="{{ asset('plugin/filestyle/bootstrap-filestyle.min.js') }}"></script>
@@ -123,18 +123,6 @@
                     <a href="{{ url('projects/show/'.$project->short_code) }}">
                         <i class="pe-7s-graph"></i>
                         <p>Tableau de bord</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/projects/{{$project->short_code}}/activites">
-                        <i class="pe-7s-user"></i>
-                        <p>Activites</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="/projects/{{$project->short_code}}/fichiers">
-                        <i class="pe-7s-user"></i>
-                        <p>Fichiers</p>
                     </a>
                 </li>
                 <li>
@@ -188,6 +176,19 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
+                        @if($project->isClosed())
+                          <li>
+                             <a href="#" style="color: red">
+                                 Warning !!! Project is closed
+                              </a>
+                          </li>
+                        @elseif($project->isLock())
+                          <li>
+                             <a href="#" style="color: red">
+                                 Warning !!! Project is locked
+                              </a>
+                          </li>
+                        @endif
                         <li>
                            <a href="#">
                                Account
@@ -272,7 +273,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="modal-body">
-            <p>Si vous decidez de supprimez l'activité vous perdrez les données associées à cette activité !!!Voulez vous supprimer l'activité ?</p>
+            <p>Si vous decidez de supprimez l'activité vous perdrez les données associées à cette activité ainsi les sous activites !!!Voulez vous supprimer l'activité ?</p>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Annulez</button>
@@ -414,6 +415,8 @@
         });
       });
     </script>
+
+    @include('views.init_tinymce', ['project' => $project])
 </html>
 
 

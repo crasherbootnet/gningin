@@ -20,10 +20,29 @@ class ActivitesController extends Controller
     {
         // recuperation du activite du project
         $project = Project::where('short_code', $short_code)->first();
-        $activites = $project->activites ?? null;
+
+        // recuperation du projectHistorisation
+        $projectHistorisation = $project->projectHistorisation();
+
+        // recuperation des activites du project
+        $activites = $projectHistorisation->activites;
 
         return view('bayeurs.projects.activites.index', ['activites' => $activites, 'project' => $project]);
     }
+
+    /*public function show($short_code){
+
+        // recuperation du project
+        $project = Project::where('short_code', $short_code)->first();
+
+        // recuperation du projectHistorisation
+        $projectHistorisation = $project->projectHistorisation();
+
+        // recuperation du cadre_logique du project
+        $cadre_logique = $projectHistorisation->cadreLogique;
+
+        return view('bayeurs.projects.cadre_logique', ['cadre_logique' => $cadre_logique, 'project' => $project]);
+    }*/
 
     /**
      * Show the form for creating a new resource.

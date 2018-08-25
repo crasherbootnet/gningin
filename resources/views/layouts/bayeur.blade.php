@@ -143,6 +143,12 @@
                         <p>Amendements</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('/bayeurs/projects/params/'.$project->short_code) }}">
+                        <i class="pe-7s-user"></i>
+                        <p>Params</p>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

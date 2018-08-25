@@ -41,7 +41,7 @@ Route::group(['middleware' => ['authOng']], function(){
 	Route::get('projects/{project_short_code}/activites/show/{activite_short_code}', 'ActivitesController@show');
 	Route::get('projects/{project_short_code}/activites/edit/{activite_short_code}', 'ActivitesController@edit');
 	Route::put('projects/{project_short_code}/activites/update/{activite_short_code}', 'ActivitesController@update');
-	Route::get('projects/{project_short_code}/activites/delete/{activite_short_code}', 'ActivitesController@destroy');
+	Route::get('projects/{project_short_code}/activites/delete/{activite_id}', 'ActivitesController@destroy');
 	Route::get('projects/cadre-logique/{short_code}', 'CadreLogiqueController@show')->name('projects.cadre');
 	Route::post('projects/cadre-logique/{short_code}', 'CadreLogiqueController@store')->name('projects.cadre');
 	Route::get('projects/hypothese/{short_code}', 'HypotheseController@show')->name('projects.hypothese');
@@ -52,6 +52,13 @@ Route::group(['middleware' => ['authOng']], function(){
 	Route::get('projects/is-modification/{short_code}', 'ProjectController@isModification');
 	Route::get('projects/isCreatedModification/{short_code}', 'ProjectController@isCreatedModification');
 	Route::get('projects/isProjectHistorisation/{short_code}', 'ProjectController@isProjectHistorisation');
+	Route::get('projects/budget/{short_code}', 'BudgetController@index');
+	Route::post('projects/register-budget-activite/{short_code_activite}', 'BudgetController@registerBudgetActivite');
+	Route::get('projects/budget/show-budget-activite/{short_code}', 'BudgetController@ShowBudgetActivite')->name('showBudgetActivite');
+	Route::get('projects/budget/add-sousactivite/{short_code}', 'BudgetController@getRegisterSousActivite');
+	Route::post('projects/budget/add-sousactivite/{short_code}', 'BudgetController@postRegisterSousActivite')->name('postRegisterSousActivite');
+	Route::get('projects/budget/edit-sousactivite/{shortcode_sousactivite}', 'BudgetController@getEditSousActivite')->name('getEditSousActivite');
+	Route::put('projects/budget/edit-sousactivite/{shortcode_sousactivite}', 'BudgetController@postEditSousActivite')->name('postEditSousActivite');
 
 	Route::get('projects/historisations/{short_code}', 'ProjectHistorisationController@index');
 	Route::prefix('projects')->group(function(){
@@ -93,40 +100,23 @@ Route::prefix('bayeurs')->group(function () {
 
 			Route::get('/projects/{ong_id}', 'OngController@getListProjects');
 
-			//Route::get('amendement/add', '');
-
-			//Route::get('projects', 'ProjectController@index')->name('projects.index');
 			Route::get('projects', 'ProjectController@index');
 			Route::get('/projects-details/{short_code}', 'BayeurController@getDetail');
 				Route::get('project-follow/{short_code}', 'Bayeur\ProjectController@show');		
 				Route::get('project-context/{short_code}', 'Bayeur\ContextController@show');
-				//Route::post('project-context/{short_code}', 'Bayeur\ContextController@store');
+				Route::get('project-budget/{short_code}', 'Bayeur\BudgetController@show');
 				Route::get('project-justificatif/{short_code}', 'Bayeur\JustificatifController@show');
-				//Route::post('project-justificatif/{short_code}', 'Bayeur\JustificatifController@store');
 				Route::get('project-objectifs/{short_code}', 'Bayeur\ObjectifController@show');
-				//Route::post('project-objectifs/{short_code}', 'Bayeur\ObjectifController@store');
 				Route::get('project-cible/{short_code}', 'Bayeur\CibleController@show');
-				//Route::post('project-cible/{short_code}', 'Bayeur\CibleController@store');
 				Route::get('project-resultats/{short_code}', 'Bayeur\ResultatsController@show');
-				//Route::post('project-resultats/{short_code}', 'Bayeur\ResultatsController@store');
 				Route::get('project-composante/{short_code}', 'Bayeur\ComposanteController@show');
-				//Route::post('project-composante/{short_code}', 'Bayeur\ComposanteController@store');
 				Route::get('project-methodologie/{short_code}', 'Bayeur\MethodologieController@show');
-				//Route::post('project-methodologie/{short_code}', 'Bayeur\MethodologieController@store');
 				Route::get('project-activites/{short_code}', 'Bayeur\ActivitesController@index');
-				//Route::get('project-activites/{short_code}/create', 'Bayeur\ActivitesController@create');
-				//Route::post('project-activites/{short_code}/store', 'Bayeur\ActivitesController@store');
 				Route::get('project-activites/show/{activite_short_code}', 'Bayeur\ActivitesController@show');
-				//Route::get('project-activites/{project_short_code}/activites/edit/{activite_short_code}', 'ActivitesController@edit');
-				//Route::put('project-activites/{project_short_code}/activites/update/{activite_short_code}', 'ActivitesController@update');
-				//Route::get('project-activites/{project_short_code}/activites/delete/{activite_short_code}', 'ActivitesController@destroy');
 				Route::get('project-cadre-logique/{short_code}', 'Bayeur\CadreLogiqueController@show');
-				//Route::post('project-cadre-logique/{short_code}', 'CadreLogiqueController@store');
 				Route::get('project-execution/{short_code}', 'Bayeur\ExecutionController@show');
-				//Route::post('projects/execution/{short_code}', 'ExecutionController@store');
 				Route::post('projects/save-modification/{short_code}', 'ProjectController@saveHistorisation');
 				Route::get('project-hypothese/{short_code}', 'Bayeur\HypotheseController@show')->name('projects.hypothese');
-				//Route::post('projechypothese/{short_code}', 'HypotheseController@store')->name('projects.hypothese');			
 		});
 
 		Route::get('project-follow/{short_code}/amememdement', 'Bayeur\ProjectController@getAmemdement');
@@ -153,8 +143,16 @@ Route::prefix('bayeurs')->group(function () {
 			Route::get('historisation-hypothese/{projectHistorisationId}', 'Bayeur\ProjectHistorisation\HypotheseController@show');
 		});
 
+		Route::get('verouilleOrDeverouille-projects', 'Bayeur\ProjectController@verouilleProject');
+		Route::get('closed-projects/{short_code}', 'Bayeur\ProjectController@getClosedProject')->name('getClosedProject');
+		Route::post('closed-projects/{short_code}', 'Bayeur\ProjectController@postClosedProject')->name('postClosedProject');
+		Route::get('financed-projects/{short_code}', 'Bayeur\ProjectController@getFinancedProject')->name('getFinancedProject');
+		Route::post('financed-projects/{short_code}', 'Bayeur\ProjectController@postFinancedProject')->name('postFinancedProject');
+
 		Route::get('projects/amendements/{short_code}', 'Bayeur\ProjectController@getAmendement');
 		Route::post('projects/amendements/{short_code}', 'Bayeur\ProjectController@postAmendement');
+		Route::get('projects/params/{short_code}', 'Bayeur\ProjectController@getParams');
+		Route::post('projects/params/{short_code}', 'Bayeur\ProjectController@postParams');
 	});
 
 	Route::get('/login', 'AuthBayeur\LoginBayeurController@showLoginForm')->name('getBayeurLogin');
@@ -190,3 +188,6 @@ Route::prefix('teachers')->group(function(){
 		dd("nous sommes dans l'espace de connection de teacher");
 	});
 });
+
+
+Route::get('/send', 'EmailController@send');

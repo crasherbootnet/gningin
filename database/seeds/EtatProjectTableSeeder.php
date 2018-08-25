@@ -17,5 +17,8 @@ class EtatProjectTableSeeder extends Seeder
         EtatProject::create(['libelle' => "Rejeté"]);
         EtatProject::create(['libelle' => "Suivi projet"]);
         EtatProject::create(['libelle' => "Blocked to modification"]);
+        EtatProject::create(['libelle' => "Locked"]);
+        EtatProject::create(['libelle' => "Unlocked"]);
+        EtatProject::create(['libelle' => "close"]);
     }
 }

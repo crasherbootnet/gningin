@@ -8,8 +8,8 @@
             <div class="row">
 				<form action="{{ url('projects/execution/'.$project->short_code) }}" method="POST" enctype="multipart/form-data">
 					<input type="text" name="_token" value="{{ csrf_token() }}" hidden>
-					<textarea rows="12" cols="100" name="content" class="tinymce">
-						@if($execution && $execution->content)  {{ $execution->content }} @endif
+					<textarea rows="12" cols="100" name="execution" class="tinymce">
+						@if($execution && $execution->exectution)  {{ $execution->execution }} @endif
 					</textarea>
 					<div>
 						<div class="row">
@@ -24,7 +24,7 @@
 					</div>
 					<div class="row" style="margin: 10px 0px 0px 0px">
 						<a href="{{ url('projects/show/'.$project->short_code) }}" class="btn btn-annuler">annuler</a>
-						<button type="submit" class="btn btn-loader pull-right">enregistrer</button>
+						<button type="submit" class="btn btn-loader pull-right" @if($project->isLock() || $project->isClosed()) disabled @endif>enregistrer</button>
 					</div>
 				</form>
 			</div>

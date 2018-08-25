@@ -11,30 +11,16 @@ use App\Objectif;
 class ObjectifController extends Controller
 {
     public function show($short_code){
-        
-        // recuperation de l'objectif du project
+
+        // recuperation du project
         $project = Project::where('short_code', $short_code)->first();
-        $objectif = $project->objectif ?? null;
+
+        // recuperation du projectHistorisation
+        $projectHistorisation = $project->projectHistorisation();
+        
+        // recuperation du context du project
+        $objectif = $projectHistorisation->objectif;
 
         return view('bayeurs.projects.objectifs', ['objectif' => $objectif, 'project' => $project]);
-    }
-
-    public function store(Request $request, $short_code = null){
-
-    	// recuperation du project
-    	$project = Project::where('short_code', $short_code)->first();
-
-    	// update or create objectif for this project
-    	if($project->objectif){
-			Objectif::where('project_id', $project->id)
-					->update(['content' => $request->content]);
-    	}else{
-    		Objectif::create([
-								'project_id' => $project->id, 
-								'content' => $request->content
-							]);
-    	}
-
-    	return redirect('bayeurs.projects/show/'.$short_code);
     }
 }

@@ -44,42 +44,36 @@ class ActivitesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, $short_code = null)
-    {   
+    {
+
         // recuperation du projet de l'activité
-        $project = Project::where('short_code', $short_code)->first(); 
+        $project = Project::where('short_code', $short_code)->first();
+
+        // recuperations des activites du project
+        $activites = $project->activites;
+
+        //dd($request);
+
+        /*if(count($activites) > 0){
+            dd("nous faisons une mise ajour");
+        }else{*/
 
         $trim_libelle = str_replace(' ','',$request->libelle);
 
-        //on vérifie si des personnees on été enregistré
-        $personnes = json_decode($request->personnes);
-
-        // enregistrement des activites
+        // enregistrement de l'activite
         $activite = Activite::create([
-                            'project_id' => $project->id,
-                            'libelle' => $request->libelle,
-                            'content' => $request->content,
-                            'short_code' => strtolower(substr($trim_libelle,0,strlen($trim_libelle)/3)),
-                            'rapport_moral' => $request->rapport_moral,
-                            'rapport_financier' => $request->rapport_financier,
-                            'liste_presence' => count($personnes) > 0 ? 1:0,
-                            'date_debut' => $request->date_debut,
-                            'date_fin' => $request->date_fin
+            'project_id' => $project->id,
+            'libelle' => $request->libelle,
+            'content' => $request->content,
+            'short_code' => strtolower(substr($trim_libelle,0,strlen($trim_libelle)/3)),
+            'date_debut' => $request->date_debut,
+            'date_fin' => $request->date_fin
         ]);
 
         // on change le status de project on le passant en mode modification
         $project->is_modification = 1;
         $project->save();
-
-        // enregistrement des personnes
-        foreach ($personnes as $personne) {
-            ActivitePersonne::create([
-                               'activite_id' => $activite->id,
-                               'nom_prenom' => $personne->name,
-                               'fonction' => $personne->fonction,
-                               'contact' => $personne->contact,
-                               'email' => $personne->contact 
-            ]);
-        }
+        //}
 
         return redirect('projects/activites/'.$short_code);
     }
@@ -133,24 +127,21 @@ class ActivitesController extends Controller
         $trim_libelle = str_replace(' ','',$request->libelle);
 
         //on vérifie si des personnees on été enregistré
-        $personnes = json_decode($request->personnes);
+        //$personnes = json_decode($request->personnes);
 
-        $query_activite = Activite::where('short_code', $activite_short_code);
+        //$query_activite = Activite::where('short_code', $activite_short_code);
         
         // mise de l'activite des activites
-        $activite = $query_activite->update([
+        $activite = Activite::where('short_code', $activite_short_code)->update([
                             'project_id' => $project->id,
                             'libelle' => $request->libelle,
                             'content' => $request->content,
                             'short_code' => strtolower(substr($trim_libelle,0,strlen($trim_libelle)/3)),
-                            'rapport_moral' => $request->rapport_moral,
-                            'rapport_financier' => $request->rapport_financier,
-                            'liste_presence' => count($personnes) > 0 ? 1:0,
                             'date_debut' => $request->date_debut,
                             'date_fin' => $request->date_fin
         ]);
 
-        if(count($personnes) > 0){
+        /*if(count($personnes) > 0){
             $activite_id  = $query_activite->first()->id;
 
             // suppression des personnes
@@ -166,7 +157,7 @@ class ActivitesController extends Controller
                                    'email' => $personne->contact 
                 ]);
             }
-        }
+        }*/
 
         return redirect('projects/activites/'.$project->short_code);
     }
@@ -177,12 +168,13 @@ class ActivitesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($project_short_code, $activite_short_code)
+    public function destroy($project_short_code, $activite_id)
     {
         // recuperation du projet de l'activité
-        $project = Project::where('short_code', $project_short_code)->first(); 
+        $project = Project::where('short_code', $project_short_code)->first();
+        
         // suppression de l'activite
-        Activite::where('short_code', $activite_short_code)->delete();
+        Activite::where('id', $activite_id)->delete();
         
         return redirect('projects/activites/'.$project->short_code);
     }

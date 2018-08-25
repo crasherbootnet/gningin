@@ -113,7 +113,7 @@
 								            <div class="info-box-content">
 								              <span class="info-box-text">Context</span>
 								            	@if($project->context)
-								            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+								            		<i class="fa fa-check fa-lg" style="color:green"></i>
 								            	@endif
 								            </div>
 								        </div>
@@ -128,7 +128,7 @@
 							            <div class="info-box-content">
 							              <span class="info-box-text">Justificatif</span>
 							            	@if($project->justificatif)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
@@ -142,13 +142,13 @@
 							            <div class="info-box-content">
 							            	<span class="info-box-text">Objectifs</span>
 							            	@if($project->objectif)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
 							    </a>
-							    @endif 
-								
+							    @endif
+
 								@if($project->projectsCategories->where('categorie_id', 4)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-cible/') }}/{{ $project->short_code }}">
 							        <div class="info-box">
@@ -157,13 +157,13 @@
 							            <div class="info-box-content">
 							              <span class="info-box-text">Cible</span>
 							               @if($project->cible)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
 							    </a>
 							    @endif
-								
+
 								@if($project->projectsCategories->where('categorie_id', 5)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-resultats/') }}/{{ $project->short_code }}">
 							        <div class="info-box">
@@ -172,7 +172,7 @@
 							            <div class="info-box-content">
 							              <span class="info-box-text">Resultats</span>
 							            	@if($project->resultats)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
@@ -187,13 +187,13 @@
 							            <div class="info-box-content">
 							            	<span class="info-box-text">Composante</span>
 								            	@if($project->composante)
-								            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+								            		<i class="fa fa-check fa-lg" style="color:green"></i>
 								            	@endif
 								            </div>
 							        </div>
 							    </a>
 							    @endif
-								
+
 								@if($project->projectsCategories->where('categorie_id', 7)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-methodologie/') }}/{{ $project->short_code }}">
 							        <div class="info-box">
@@ -202,13 +202,13 @@
 							            <div class="info-box-content">
 							              <span class="info-box-text">Methodologie</span>
 							               @if($project->methodologie)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
 							    </a>
 							    @endif
-								
+
 								@if($project->projectsCategories->where('categorie_id', 8)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-hypothese/') }}/{{ $project->short_code }}">
 							        <div class="info-box">
@@ -217,12 +217,12 @@
 							            <div class="info-box-content">
 							              <span class="info-box-text">hypothèse</span>
 							              @if($project->hypothese)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
 							    </a>
-							    @endif 
+							    @endif
 
 							    @if($project->projectsCategories->where('categorie_id', 9)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-activites/') }}/{{ $project->short_code }}">
@@ -232,7 +232,7 @@
 							            <div class="info-box-content">
 							              <span class="info-box-text">Activités</span>
 							              @if($project->avtivites)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
@@ -250,7 +250,7 @@
 							            </div>
 							        </div>
 							    </a>
-							    @endif 
+							    @endif
 
 								@if($project->projectsCategories->where('categorie_id', 11)->first())
 							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-execution/') }}/{{ $project->short_code }}">
@@ -260,7 +260,7 @@
 							            <div class="info-box-content">
 							              <span class="info-box-text">plan d'exécution du projet</span>
 							               @if($project->executions)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
@@ -268,14 +268,14 @@
 							    @endif
 
 							    @if($project->projectsCategories->where('categorie_id', 12)->first())
-							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-context/') }}/{{ $project->short_code }}">
+							    <a class="col-md-3 col-sm-6 col-xs-12" href="{{ url('bayeurs/ong/project-budget/') }}/{{ $project->short_code }}">
 							        <div class="info-box">
 							            <span class="info-box-icon bg-red"></span>
 
 							            <div class="info-box-content">
 							              <span class="info-box-text">Budget</span>
 							               @if($project->budgets)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 							            </div>
 							        </div>
@@ -322,7 +322,7 @@
 						            <div class="info-box-content">
 						            	<span class="info-box-text">Echec</span>
 							            @if($project->echec)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 						            </div>
 						        </div>
@@ -333,7 +333,7 @@
 						            <div class="info-box-content">
 						            	<span class="info-box-text">Succes</span>
 						            	@if($project->success)
-							            		<i class="fa fa-check fa-lg" style="color:green"></i>	
+							            		<i class="fa fa-check fa-lg" style="color:green"></i>
 							            	@endif
 						            </div>
 						        </div>
@@ -344,7 +344,7 @@
 						            <div class="info-box-content">
 						              <span class="info-box-text">Potentialités</span>
 						               @if($project->potentialites)
-						              	<i class="fa fa-check fa-lg" style="color:green"></i>	
+						              	<i class="fa fa-check fa-lg" style="color:green"></i>
 						              @endif
 						            </div>
 						        </div>
@@ -355,7 +355,7 @@
 						            <div class="info-box-content">
 						              <span class="info-box-text">Obstacles</span>
 						               @if($project->obstacles)
-						              	<i class="fa fa-check fa-lg" style="color:green"></i>	
+						              	<i class="fa fa-check fa-lg" style="color:green"></i>
 						              @endif
 						            </div>
 						        </div>
@@ -366,7 +366,7 @@
 						            <div class="info-box-content">
 						              <span class="info-box-text">Participants</span>
 						               @if($project->participants)
-						              	<i class="fa fa-check fa-lg" style="color:green"></i>	
+						              	<i class="fa fa-check fa-lg" style="color:green"></i>
 						              @endif
 						            </div>
 						        </div>
@@ -377,7 +377,7 @@
 						            <div class="info-box-content">
 						              <span class="info-box-text">Bilan Financier</span>
 						               @if($project->bilan_financier)
-						              	<i class="fa fa-check fa-lg" style="color:green"></i>	
+						              	<i class="fa fa-check fa-lg" style="color:green"></i>
 						              @endif
 						            </div>
 						        </div>

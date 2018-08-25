@@ -14,7 +14,7 @@
 					</div>
 						<div class="row" style="margin: 10px 0px 0px 0px">
 						<a href="{{ url('bayeurs/ong/project-follow/'.$project->short_code) }}" class="btn btn-annuler">annuler</a>
-						<button type="submit" class="btn btn-loader pull-right">enregistrer</button>
+						<button type="submit" class="btn btn-loader pull-right" @if($project->isLock()) disabled @endif>enregistrer</button>
 					</div>		
 				</form>
 			</div>

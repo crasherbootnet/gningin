@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Execution extends Model
+class Execution extends DksModel
 {
     public $table = "executions";
+    protected $name = "Execution";
     public $fillable = ["project_id", "content", "project_historisation_id"];
 
     public function project(){

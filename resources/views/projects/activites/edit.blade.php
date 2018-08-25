@@ -79,9 +79,14 @@
 						<input type="date" name="date_fin" class="form-control" value="@php echo explode(' ', $activite->date_fin)[0]; @endphp"required>
 					</div>
 				</div>
+				{{--<a href="{{ url('projects/activites/'.$project->short_code) }}" class="btn btn-annuler">Annuler</a>
+				<input type="button" name="previous" class="previous action-button" value="Previous" />
+				<input type="button" name="next" class="next action-button" value="Next" />--}}
+
+
 				<a href="{{ url('projects/activites/'.$project->short_code) }}" class="btn btn-annuler">Annuler</a>
 				<input type="button" name="previous" class="previous action-button" value="Previous" />
-				<input type="button" name="next" class="next action-button" value="Next" />
+				<button type="submit" class="btn btn-loader" name="edit_activite">Terminer</button>
 			</fieldset>
 			<!--<fieldset>
 				<h2 class="fs-title">Rapport moral</h2>

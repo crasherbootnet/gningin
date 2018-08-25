@@ -4,9 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Composante extends Model
+class Composante extends DksModel
 {
     public $table = "composantes";
+    protected $name= "Composante";
     public $fillable = ["project_id", "content", "project_historisation_id"];
 
     public function project(){

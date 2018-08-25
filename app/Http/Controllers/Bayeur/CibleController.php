@@ -12,29 +12,15 @@ class CibleController extends Controller
 {
     public function show($short_code){
         
-        // recuperation du cible du project
+        // recuperation du project
         $project = Project::where('short_code', $short_code)->first();
-        $cible = $project->cible ?? null;
+
+        // recuperation du projectHistorisation
+        $projectHistorisation = $project->projectHistorisation();
+        
+        // recuperation du justificatif du project
+        $cible = $projectHistorisation->cible;
 
         return view('bayeurs.projects.cible', ['cible' => $cible, 'project' => $project]);
-    }
-
-    public function store(Request $request, $short_code = null){
-
-    	// recuperation du project
-    	$project = Project::where('short_code', $short_code)->first();
-
-    	// update or create cible for this project
-    	if($project->cible){
-			Cible::where('project_id', $project->id)
-					->update(['content' => $request->content]);
-    	}else{
-    		Cible::create([
-								'project_id' => $project->id, 
-								'content' => $request->content
-							]);
-    	}
-
-    	return redirect('bayeurs.projects/show/'.$short_code);
     }
 }

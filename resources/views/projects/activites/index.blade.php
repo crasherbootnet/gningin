@@ -25,7 +25,9 @@
 	<div class="content">
         <div class="container-fluid">
             <div class="box row">
-				<a href="{{ url('projects/activites/'.$project->short_code.'/create') }}" class="pull-right btn btn-loader">ajouter</a>
+            	@if(!$project->isLock() && !$project->isClosed())
+					<a href="{{ url('projects/activites/'.$project->short_code.'/create') }}" class="pull-right btn btn-loader">ajouter</a>
+				@endif
 				<table class="table">
 					<thead>
 						<tr>
@@ -48,7 +50,7 @@
 								<td class="actions">
 									<a href="{{ url('projects/'.$project->short_code.'/activites/edit/'.$activite->short_code) }}" class='view'><span><i class='fa fa-pencil-square-o fa-lg' aria-hidden='true'></i></span></a>
 									<a href="{{ url('projects/'.$project->short_code.'/activites/show/'.$activite->short_code) }}" class='edit'><span><i class='fa fa-eye fa-lg' aria-hidden='true'></i></span></a>
-									<a href="{{ url('projects/'.$project->short_code.'/activites/delete/'.$activite->short_code) }}" class='deleted' data-activite_short_code="{{ $activite->short_code }}"><span><i class='fa fa-trash-o  fa-lg' aria-hidden='true'></i></span></a>
+									<a href="{{ url('projects/'.$project->short_code.'/activites/delete/'.$activite->id) }}" class='deleted' data-activite_id="{{ $activite->id }}"><span><i class='fa fa-trash-o  fa-lg' aria-hidden='true'></i></span></a>
 								</td>
 							</tr>
 							@php $i+=1 @endphp
@@ -65,12 +67,13 @@
 		$(document).ready(function(){
 			$(".deleted").click(function(){
 				$('#modalDeleteActivity').modal();
-				$('.btn_delete_activite').attr("data-activite_short_code","/"+$(this).data('activite_short_code'));
+				$('.btn_delete_activite').attr("data-activite_id","/"+$(this).data('activite_id'));
 				return false;
 			});
 
 			$(".btn_delete_activite").click(function(){
-				window.location = "{{ url('projects') }}"+"/"+$(this).data('project_short_code')+"/activites/delete"+$(this).data('activite_short_code');
+				window.location = "{{ url('projects') }}"+"/"+$(this).data('project_short_code')+"/activites/delete"+$(this).data('activite_id');
+				//console.log("{{ url('projects') }}"+"/"+$(this).data('project_short_code')+"/activites/delete"+$(this).data('activite_id'));
 			});
 		});
 	</script>

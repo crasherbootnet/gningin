@@ -23,5 +23,4 @@ class BudgetController extends Controller
 
         return view('bayeurs.projects.budgets', ['activites' => $activites, 'project' => $project]);
     }
-    }
 }

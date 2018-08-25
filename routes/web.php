@@ -83,7 +83,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/admin', 'Admin\AdminController@index')->name('admin');
+// Route::get('/admin', 'Admin\AdminController@index')->name('admin');
 
 Route::get('/admin/users/changed-statut', 'Admin\UserController@changedStatut');
 

@@ -467,6 +467,8 @@ class Project extends Model
     	return $this->statut_project_id === 1;
     }
 
+    // public function i
+
     public function getInformationProjectLocked()
     {
     	$information = "";

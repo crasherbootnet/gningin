@@ -14,7 +14,7 @@
             	<div>
             		@foreach($projects as $project)
             			<div class="col-md-3">
-                            <a href="{{ url('projects/show') }}/{{ $project->short_code }}">
+                            <a href="{{ url('projects/show') }}/{{ $project->short_code }} btn-project-{{$project->short_code}}" id="btn-project-{{$project->short_code}}">
                                 <div class="card">
                                     <i class="fa fa-graduation-cap fa-5x" aria-hidden="true"></i>
                                     <label>{{ $project->short_code }}</label>

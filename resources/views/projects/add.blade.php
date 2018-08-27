@@ -13,7 +13,7 @@
 </style>
 <div class="container">
 	<h3 style="text-align: center">Bienvenue dans la création d'un projet</h3>
-	<form action="{{ url('projects')}}" method="POST" class="box box-success form">
+	<form action="{{ url('projects')}}" method="POST" class="box box-success form" style="margin-bottom: 100px;">
 		<input type="text" name="_token" value="{{ csrf_token() }}" hidden>
 		<input type="text" name="categories" hidden>
 		<div class="form-group">
@@ -28,7 +28,7 @@
 			<div class="row">
 				<label class="col-md-3" style="text-align: right;padding-top: 10px;">Date début du projet (*) </label>
 				<div class="col-md-6">
-					<input type="date" name="date_debut" class="form-control" required>
+					<input type="date" name="date_debut" class="form-control" id="date_debut" required>
 				</div>
 			</div>
 		</div>
@@ -36,7 +36,7 @@
 			<div class="row">
 				<label class="col-md-3" style="text-align: right;padding-top: 10px;">Date Fin du projet (*) </label>
 				<div class="col-md-6">
-					<input type="date" name="date_fin" class="form-control">
+					<input type="date" name="date_fin" class="form-control" id="date_fin" required>
 				</div>
 			</div>
 		</div>
@@ -54,12 +54,12 @@
 		</div>
 		<div class="row" style="margin-bottom: 10px">
 			@foreach($categories as $categorie)
-				<a href="javascript:void(0)" class="btn btn-primary col-md-2 categorie" data-categorie_id="{{ $categorie->id }}" style="margin-top: 10px; margin-left: 10px;">{{ $categorie->libelle }}</a>
+				<a href="javascript:void(0)" class="btn btn-primary col-md-2 categorie" data-categorie_id="{{ $categorie->id }}" style="margin-top: 10px; margin-left: 10px;" id="btn-{{$categorie->libelle}}">{{ $categorie->libelle }}</a>
 			@endforeach
 		</div>
 		<div class="row" style="margin: 0px">
 			<a href="/projects" class="btn btn-annuler">annuler</a>
-			<button type="submit" class="btn btn-loader pull-right">créer</button>
+			<button type="submit" class="btn btn-loader pull-right" id="btn-create-project">créer</button>
 		</div>	
 	</form>
 </div>
